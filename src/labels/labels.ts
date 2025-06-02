@@ -16,6 +16,7 @@ export const labels = {
   movies_appares_in: 'Movies Appearing In',
   movie_actor_headline: 'Movies Featuring',
   movie_no_favorites: 'No Favorites',
+  no_cast: 'Sounds weird but  there is no cast information available for this movie.',
   movie_no_favorites_description: 'You have not added any movies to your favorites yet.',
   common: {
     loading: 'Loading...',

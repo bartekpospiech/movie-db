@@ -16,29 +16,35 @@ export const MovieCast = ({ cast }: MovieCastProps) => {
           {labels.common.cast}
         </Text>
       </Divider>
-      <Grid columns={{ base: 2, lg: 3 }} gap="6" mt="4" flexWrap="wrap">
-        {cast.map(actor => (
-          <Link to={`/movie/actor/${actor.id}`}>
-            <Flex key={actor.id} gap="3" align="center" flex="1 0 fit-content">
-              <Avatar
-                name={actor.name}
-                src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                size="lg"
-                borderColor="colorPalette.600"
-                borderWidth="1px"
-              />
-              <Stack gap="0">
-                <Text fontWeight="black" textStyle="sm">
-                  {actor.name}
-                </Text>
-                <Text color="fg.muted" textStyle="xs">
-                  {actor.character}
-                </Text>
-              </Stack>
-            </Flex>
-          </Link>
-        ))}
-      </Grid>
+      {cast.length === 0 ? (
+        <Text mt="8" textStyle="sm" color="fg.muted" textAlign="center">
+          {labels.no_cast}
+        </Text>
+      ) : (
+        <Grid columns={{ base: 2, lg: 3 }} gap="6" mt="4" flexWrap="wrap">
+          {cast.map(actor => (
+            <Link to={`/movie/actor/${actor.id}`}>
+              <Flex key={actor.id} gap="3" align="center" flex="1 0 fit-content">
+                <Avatar
+                  name={actor.name}
+                  src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                  size="lg"
+                  borderColor="colorPalette.600"
+                  borderWidth="1px"
+                />
+                <Stack gap="0">
+                  <Text fontWeight="black" textStyle="sm">
+                    {actor.name}
+                  </Text>
+                  <Text color="fg.muted" textStyle="xs">
+                    {actor.character}
+                  </Text>
+                </Stack>
+              </Flex>
+            </Link>
+          ))}
+        </Grid>
+      )}
     </Box>
   )
 }
