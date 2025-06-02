@@ -1,6 +1,7 @@
 import { Error, MoviePreviewCard, PageHeader } from '@/components'
 import { labels } from '@/labels'
 import {
+  EmptyState,
   Flex,
   Grid,
   PaginationItems,
@@ -12,7 +13,7 @@ import {
 import { useGetMovieFavoritesQuery } from '@/services'
 
 import { useState } from 'react'
-import { PiArrowBendUpLeftLight } from 'react-icons/pi'
+import { PiArrowBendUpLeftLight, PiPopcorn } from 'react-icons/pi'
 import { Link } from 'react-router'
 import { APP_PATHS } from '@/routes'
 
@@ -39,11 +40,18 @@ export const MovieFavorites = () => {
         textAlign="center"
         alignItems="center"
       />
-      {
+
+      {data && data?.results?.length ? (
         <Grid columns={{ base: 2, lg: 3, xl: 4 }} gap={{ base: '12', lg: '8' }}>
           {data?.results?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
         </Grid>
-      }
+      ) : (
+        <EmptyState
+          title={labels.movie_no_favorites}
+          description={labels.movie_no_favorites_description}
+          icon={<PiPopcorn fill="colorPalette.green" />}
+        />
+      )}
       <Flex justifyContent="center" alignItems="center">
         {data && data.total_pages > 1 && (
           <PaginationRoot

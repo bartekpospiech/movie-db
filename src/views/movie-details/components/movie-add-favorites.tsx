@@ -29,6 +29,8 @@ export const AddToFavorites = ({ movie }: AddToFavoritesProps) => {
               label: 'View Favorites',
               onClick: () => {
                 navigate('/favorites')
+                window.scrollTo(0, 0)
+                navigate(0)
               },
             },
             duration: 3000,

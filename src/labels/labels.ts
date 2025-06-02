@@ -15,6 +15,8 @@ export const labels = {
   movie_favorites_description: 'Here are the movies you have added to your favorites.',
   movies_appares_in: 'Movies Appearing In',
   movie_actor_headline: 'Movies Featuring',
+  movie_no_favorites: 'No Favorites',
+  movie_no_favorites_description: 'You have not added any movies to your favorites yet.',
   common: {
     loading: 'Loading...',
     error: 'An error occurred. Please try again later.',
