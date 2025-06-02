@@ -54,7 +54,7 @@ export const MovieSearch = () => {
       ) : (
         <>
           {query.length > 1 && (
-            <Grid columns={{ base: 2, lg: 3, xl: 4 }} gap={{ base: '12', lg: '8' }}>
+            <Grid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={{ base: '12', lg: '8' }}>
               {data?.results?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
             </Grid>
           )}

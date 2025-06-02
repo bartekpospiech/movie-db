@@ -28,7 +28,12 @@ export const SimilarMovies = ({ similar }: SimilarMoviesProps) => {
           {labels.common.similar_movies}
         </Text>
       </Divider>
-      <Grid columns={{ base: 2, lg: 3 }} gap={{ base: '12', lg: '8' }} px="24" py="8">
+      <Grid
+        columns={{ base: 1, md: 2, lg: 3 }}
+        gap={{ base: '12', lg: '8' }}
+        px={{ base: '4', md: '12', xl: '24' }}
+        py="8"
+      >
         {similar.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
       </Grid>
     </Stack>

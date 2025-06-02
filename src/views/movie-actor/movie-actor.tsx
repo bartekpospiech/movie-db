@@ -35,7 +35,7 @@ export const MovieActor = () => {
   }
 
   return (
-    <Stack gap="6" px="24">
+    <Stack gap="6" px={{ base: '4', md: '12', xl: '24' }} py="6">
       <Flex justify="space-between" align="center" px="2">
         <Link to={APP_PATHS.HOME}>
           <PiArrowBendUpLeftLight fill="green" size="32" />
@@ -101,7 +101,7 @@ export const MovieActor = () => {
           {labels.movies_appares_in}
         </Text>
       </Divider>
-      <Grid columns={{ base: 1, lg: 2, xl: 3 }} gap={{ base: '12', lg: '8' }} px={{ base: '0', lg: '12', xl: '24' }}>
+      <Grid columns={{ base: 1, lg: 2, xl: 3 }} gap={{ base: '12', lg: '8' }} px={{ base: '0', md: '12', xl: '24' }}>
         {movies?.cast?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
       </Grid>
       <ScrollToTop />
