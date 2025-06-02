@@ -31,7 +31,7 @@ export const movieApi = createApi({
       transformResponse: response => response,
     }),
     getMovieFavorites: builder.query<MoviesResponse, unknown, MoviesResponse>({
-      query: ({ page = 1 }) => `/account/22040515/favorite/movies?page=${page}&sort_by=created_at.desc`,
+      query: ({ page = 1, createdAtSort }) => `/account/22040515/favorite/movies?page=${page}&sort_by=${createdAtSort}`,
       transformResponse: response => response,
     }),
     getSimilarMovies: builder.query({
