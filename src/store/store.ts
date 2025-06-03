@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
-import { movieApi } from '@/services/movie'
+import { movieApi } from '@/services'
 
 export const store = configureStore({
   reducer: {

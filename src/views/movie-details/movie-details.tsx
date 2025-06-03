@@ -2,12 +2,13 @@ import { AspectRatio, Box, Center, Flex, Image, Spinner, Stack, Text } from '@/u
 import { useGetMovieDetailsQuery, useGetMovieCreditsQuery, useGetSimilarMoviesQuery } from '@/services'
 import { Error, ScrollToTop } from '@/components'
 import { APP_PATHS } from '@/routes'
+import { labels } from '@/labels'
 
 import { Link } from 'react-router'
 import { PiArrowBendUpLeftLight, PiImageBrokenThin, PiTimerThin, PiCalendarDotsThin } from 'react-icons/pi'
 import { useParams } from 'react-router'
 
-import { AddToFavorites, MovieCast, MovieTags, SimilarMovies } from './components'
+import { AddToFavorites, MovieCast, MovieMedia, MovieTags, SimilarMovies } from './components'
 
 export const MovieDetails = () => {
   const { id } = useParams()
@@ -77,7 +78,7 @@ export const MovieDetails = () => {
                       month: 'short',
                       day: '2-digit',
                     })
-                  : ''}
+                  : `${labels.movie_no_premiere_date}`}
               </Text>
               <span>•</span>
               <PiTimerThin size="16" />
@@ -95,6 +96,7 @@ export const MovieDetails = () => {
           <MovieCast cast={recentCast} />
         </Stack>
       </Flex>
+      <MovieMedia id={movie?.id ?? 0} />
       <SimilarMovies similar={similarMovies} />
       <ScrollToTop />
     </>

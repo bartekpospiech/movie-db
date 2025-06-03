@@ -1,4 +1,12 @@
-import type { MovieByActorResponse, MovieResponse, MoviesResponse } from '@/types'
+import type {
+  BackdropsEntityOrPostersEntity,
+  ImagesResponse,
+  MovieByActorResponse,
+  MovieResponse,
+  MoviesResponse,
+  ResultsEntity,
+  TrailersResponse,
+} from '@/types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY
@@ -17,6 +25,30 @@ export const movieApi = createApi({
     getMovieDetails: builder.query<MovieResponse, unknown, MovieResponse>({
       query: id => `/movie/${id}`,
       transformResponse: response => response,
+    }),
+    getMovieImages: builder.query<BackdropsEntityOrPostersEntity[], unknown, ImagesResponse>({
+      query: id => `/movie/${id}/images`,
+      transformResponse: response => response.backdrops?.slice(0, 9) ?? [],
+    }),
+    getMovieTrailer: builder.query<ResultsEntity, unknown, TrailersResponse>({
+      query: id => `/movie/${id}/videos`,
+      transformResponse: ({ results }) => {
+        const trailer = results?.find(video => video.type === 'Trailer' && video.site === 'YouTube')
+        return (
+          trailer || {
+            iso_639_1: '',
+            iso_3166_1: '',
+            name: '',
+            key: '',
+            site: '',
+            size: 0,
+            type: '',
+            official: false,
+            published_at: '',
+            id: '',
+          }
+        )
+      },
     }),
     getMovieActor: builder.query({
       query: id => `/person/${id}`,
@@ -58,6 +90,8 @@ export const movieApi = createApi({
 
 export const {
   useGetMovieDetailsQuery,
+  useGetMovieImagesQuery,
+  useGetMovieTrailerQuery,
   useGetMovieActorQuery,
   useGetMovieByActorQuery,
   useGetMovieCreditsQuery,

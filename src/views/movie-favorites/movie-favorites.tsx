@@ -22,7 +22,12 @@ import { APP_PATHS } from '@/routes'
 export const MovieFavorites = () => {
   const [createdAtSort, setCreatedAtSort] = useState<string>('created_at.desc')
   const [page, setPage] = useState(1)
-  const { data, isError, isLoading } = useGetMovieFavoritesQuery({ page, createdAtSort })
+  const { data, isError, isLoading } = useGetMovieFavoritesQuery(
+    { page, createdAtSort },
+    {
+      skip: !createdAtSort,
+    }
+  )
 
   if (isLoading) {
     return <Spinner />
