@@ -25,9 +25,10 @@ export function SegmentField(props: SegmentFieldProps) {
         flex="1"
         onValueChange={e => onChange?.(e.value ?? '')}
         bgColor="white"
+        border="1px solid fg.muted"
       >
-        <SegmentGroup.Indicator bgColor="bg.muted" shadow="md" />
-        <SegmentGroup.Items items={options} flex="1" justifyContent="center" px="2" />
+        <SegmentGroup.Indicator bgColor="bg.muted" shadow="xs" scale={1.1} />
+        <SegmentGroup.Items items={options} flex="1" justifyContent="center" cursor="pointer" />
       </SegmentGroup.Root>
     </Field.Root>
   )

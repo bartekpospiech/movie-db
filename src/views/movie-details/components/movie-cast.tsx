@@ -23,7 +23,7 @@ export const MovieCast = ({ cast }: MovieCastProps) => {
       ) : (
         <Grid columns={{ base: 2, lg: 3 }} gap="6" mt="4" flexWrap="wrap">
           {cast.map(actor => (
-            <Link to={`/movie/actor/${actor.id}`}>
+            <Link to={`/movie/actor/${actor.id}`} key={actor.id}>
               <Flex key={actor.id} gap="3" align="center" flex="1 0 fit-content">
                 <Avatar
                   name={actor.name}

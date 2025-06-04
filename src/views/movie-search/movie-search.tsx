@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { PiPopcorn, PiHeartLight } from 'react-icons/pi'
-import { Error } from '@/components'
+import { Error, ScrollToTop } from '@/components'
 import {
   EmptyState,
   Flex,
@@ -76,6 +76,7 @@ export const MovieSearch = () => {
           </PaginationRoot>
         )}
       </Flex>
+      <ScrollToTop page={page} />
     </>
   )
 }
