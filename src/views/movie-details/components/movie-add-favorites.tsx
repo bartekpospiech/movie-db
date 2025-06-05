@@ -13,6 +13,7 @@ type AddToFavoritesProps = {
 export const AddToFavorites = ({ movie }: AddToFavoritesProps) => {
   const navigate = useNavigate()
   const [addMovieToFavorites] = useAddMovieToFavoritesMutation()
+
   return (
     <PiHeartLight
       fill="green"

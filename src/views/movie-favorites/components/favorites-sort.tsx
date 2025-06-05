@@ -7,20 +7,18 @@ type FavoritesSortProps = {
   setCreatedAtSort: (value: string) => void
 }
 
-export const FavoritesSort = ({ setCreatedAtSort }: FavoritesSortProps) => {
-  return (
-    <Box w="full">
-      <Flex ml="auto" maxW="48">
-        <SegmentField
-          name="direction"
-          onChange={value => setCreatedAtSort(value)}
-          defaultValue="created_at.desc"
-          options={[
-            { label: <PiSortAscending />, value: 'created_at.asc' },
-            { label: <PiSortDescending />, value: 'created_at.desc' },
-          ]}
-        />
-      </Flex>
-    </Box>
-  )
-}
+export const FavoritesSort = ({ setCreatedAtSort }: FavoritesSortProps) => (
+  <Box w="full">
+    <Flex ml="auto" maxW="48">
+      <SegmentField
+        name="direction"
+        onChange={value => setCreatedAtSort(value)}
+        defaultValue="created_at.desc"
+        options={[
+          { label: <PiSortAscending />, value: 'created_at.asc' },
+          { label: <PiSortDescending />, value: 'created_at.desc' },
+        ]}
+      />
+    </Flex>
+  </Box>
+)
