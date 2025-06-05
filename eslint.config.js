@@ -5,10 +5,9 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import importPlugin from 'eslint-plugin-import'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
-import path from 'path'
 
 export default tseslint.config(
-  { ignores: ['dist'] },
+  { ignores: ['dist', 'node_modules'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
