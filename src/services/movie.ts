@@ -24,7 +24,7 @@ export const movieApi = createApi({
     },
   }),
   endpoints: builder => ({
-    getMovieDetails: builder.query<MovieResponse, unknown, MovieResponse>({
+    getMovieDetails: builder.query<MovieResponse, string, MovieResponse>({
       query: id => `/movie/${id}`,
       transformResponse: response => response,
     }),
@@ -32,11 +32,11 @@ export const movieApi = createApi({
       query: () => '/trending/movie/week',
       transformResponse: response => response.results?.slice(0, 4) ?? [],
     }),
-    getMovieImages: builder.query<BackdropsEntityOrPostersEntity[], unknown, ImagesResponse>({
+    getMovieImages: builder.query<BackdropsEntityOrPostersEntity[], number, ImagesResponse>({
       query: id => `/movie/${id}/images`,
       transformResponse: response => response.backdrops?.slice(0, 9) ?? [],
     }),
-    getMovieTrailer: builder.query<ResultsEntity, unknown, TrailersResponse>({
+    getMovieTrailer: builder.query<ResultsEntity, number, TrailersResponse>({
       query: id => `/movie/${id}/videos`,
       transformResponse: ({ results }) => {
         const trailer = results?.find(video => video.type === 'Trailer' && video.site === 'YouTube')
@@ -60,7 +60,7 @@ export const movieApi = createApi({
       query: id => `/person/${id}`,
       transformResponse: response => response,
     }),
-    getMovieByActor: builder.query<MovieByActorResponse, unknown, MovieByActorResponse>({
+    getMovieByActor: builder.query<MovieByActorResponse, string, MovieByActorResponse>({
       query: id => `/person/${id}/combined_credits`,
       transformResponse: response => response,
     }),
@@ -76,7 +76,7 @@ export const movieApi = createApi({
       query: ({ id, page = 1 }) => `/movie/${id}/similar?page=${page}`,
       transformResponse: response => response,
     }),
-    searchMovies: builder.query<MoviesResponse, unknown, MoviesResponse>({
+    searchMovies: builder.query<MoviesResponse, { query: string; page: number }, MoviesResponse>({
       query: ({ query, page = 1 }) => `/search/movie?query=${query}&page=${page}`,
       transformResponse: response => response,
     }),

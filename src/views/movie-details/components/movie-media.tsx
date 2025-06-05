@@ -14,14 +14,14 @@ export const MovieMedia = ({ id }: MovieImagesProps) => {
     data: images,
     isLoading: imagesLoading,
     isError: imagesError,
-  } = useGetMovieImagesQuery(id, {
+  } = useGetMovieImagesQuery(id ? id : 0, {
     skip: !id,
   })
   const {
     data: trailer,
     isLoading: trailerLoading,
     isError: trailerError,
-  } = useGetMovieTrailerQuery(id, {
+  } = useGetMovieTrailerQuery(id ? id : 0, {
     skip: !id,
   })
 

@@ -21,7 +21,7 @@ export const MovieActor = () => {
     data: movies,
     isLoading: moviesLoading,
     isError: moviesError,
-  } = useGetMovieByActorQuery(id, {
+  } = useGetMovieByActorQuery(id ? id : '0', {
     skip: !id,
   })
 
