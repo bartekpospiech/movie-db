@@ -48,23 +48,25 @@ export const MovieFavorites = () => {
         textAlign="center"
         alignItems="center"
       />
-      <Box w="full">
-        <Flex ml="auto" maxW="48">
-          <SegmentField
-            name="direction"
-            onChange={value => setCreatedAtSort(value)}
-            defaultValue="created_at.desc"
-            options={[
-              { label: <PiSortAscending />, value: 'created_at.asc' },
-              { label: <PiSortDescending />, value: 'created_at.desc' },
-            ]}
-          />
-        </Flex>
-      </Box>
       {data && data?.results?.length ? (
-        <Grid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={{ base: '12', lg: '8' }}>
-          {data?.results?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
-        </Grid>
+        <>
+          <Box w="full">
+            <Flex ml="auto" maxW="48">
+              <SegmentField
+                name="direction"
+                onChange={value => setCreatedAtSort(value)}
+                defaultValue="created_at.desc"
+                options={[
+                  { label: <PiSortAscending />, value: 'created_at.asc' },
+                  { label: <PiSortDescending />, value: 'created_at.desc' },
+                ]}
+              />
+            </Flex>
+          </Box>
+          <Grid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={{ base: '12', lg: '8' }}>
+            {data?.results?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
+          </Grid>
+        </>
       ) : (
         <EmptyState
           title={labels.movie_no_favorites}
