@@ -21,6 +21,11 @@ export const config = defineConfig({
         l2: { value: '0.375rem' },
         l3: { value: '0.5rem' },
       },
+      sizes: {
+        small: { value: '240px' },
+        large: { value: '400px' },
+        video: { value: '640px' },
+      },
     }),
     recipes: {
       input: inputRecipe,

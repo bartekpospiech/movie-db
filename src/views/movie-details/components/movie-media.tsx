@@ -3,7 +3,7 @@ import YouTube from 'react-youtube'
 import { Error, Title } from '@/components'
 import { labels } from '@/labels'
 import { useGetMovieImagesQuery, useGetMovieTrailerQuery } from '@/services'
-import { EmptyState, Flex, Grid, GridItem, Image, Skeleton, Stack } from '@/ui'
+import { Box, EmptyState, Flex, Grid, GridItem, Image, Skeleton, Stack } from '@/ui'
 
 type MovieImagesProps = {
   id: number
@@ -29,7 +29,7 @@ export const MovieMedia = ({ id }: MovieImagesProps) => {
     return (
       <Flex gap="4">
         {[...Array(3).keys()].map(item => (
-          <Skeleton key={item} height="240px" width="1/3" boxShadow="sm" borderRadius="md" />
+          <Skeleton key={item} height="small" width="1/3" boxShadow="sm" borderRadius="md" />
         ))}
       </Flex>
     )
@@ -38,7 +38,7 @@ export const MovieMedia = ({ id }: MovieImagesProps) => {
   if (trailerLoading) {
     return (
       <Flex gap="4">
-        <Skeleton height="640px" width="full" boxShadow="sm" borderRadius="md" />
+        <Skeleton height="video" width="full" boxShadow="sm" borderRadius="md" />
       </Flex>
     )
   }
@@ -70,28 +70,26 @@ export const MovieMedia = ({ id }: MovieImagesProps) => {
                 w="100%"
                 h="auto"
                 borderRadius="md"
-                boxShadow="sm"
-                objectFit="cover"
               />
             </GridItem>
           ))}
         </Grid>
         <Title headline={labels.common.movie_trailer} />
-        <YouTube
-          id={trailer?.key || ''}
-          videoId={trailer?.key || ''}
-          opts={{
-            width: '100%',
-            height: '640px',
-            playerVars: {
-              autoplay: 0,
-              controls: 0,
-              rel: 0,
-              modestbranding: 0,
-            },
-          }}
-        />
+        <Box borderRadius="md" overflow="hidden">
+          <YouTube id={trailer?.key || ''} videoId={trailer?.key || ''} opts={opts} />
+        </Box>
       </Stack>
     </>
   )
+}
+
+const opts = {
+  width: '100%',
+  height: '640px',
+  playerVars: {
+    autoplay: 0,
+    controls: 0,
+    rel: 0,
+    modestbranding: 0,
+  },
 }

@@ -1,7 +1,7 @@
 import { Error, MoviePreviewCard, Title } from '@/components'
 import { labels } from '@/labels'
 import { useGetTrendingMoviesQuery } from '@/services'
-import { Flex, Grid, Skeleton } from '@/ui'
+import { Flex, Grid, Skeleton, Stack } from '@/ui'
 
 export const TrendingMovies = ({ query }: { query: string }) => {
   const { data, isLoading, isError } = useGetTrendingMoviesQuery({
@@ -10,11 +10,14 @@ export const TrendingMovies = ({ query }: { query: string }) => {
 
   if (isLoading) {
     return (
-      <Flex gap="4">
-        {[...Array(4).keys()].map(item => (
-          <Skeleton key={item} height="400px" width="1/4" boxShadow="sm" borderRadius="md" />
-        ))}
-      </Flex>
+      <Stack gap="8">
+        <Skeleton height="10" width="full" borderRadius="sm" />
+        <Flex justifyContent="space-evenly" gap="4">
+          {[...Array(4).keys()].map(item => (
+            <Skeleton key={item} height="large" flex="1" boxShadow="sm" borderRadius="md" />
+          ))}
+        </Flex>
+      </Stack>
     )
   }
 
