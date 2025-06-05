@@ -1,7 +1,7 @@
-import { Error, MoviePreviewCard } from '@/components'
+import { Error, MoviePreviewCard, Title } from '@/components'
 import { labels } from '@/labels'
 import { useGetTrendingMoviesQuery } from '@/services'
-import { Divider, Flex, Grid, Skeleton, Text } from '@/ui'
+import { Flex, Grid, Skeleton } from '@/ui'
 
 export const TrendingMovies = ({ query }: { query: string }) => {
   const { data, isLoading, isError } = useGetTrendingMoviesQuery({
@@ -24,11 +24,7 @@ export const TrendingMovies = ({ query }: { query: string }) => {
 
   return (
     <>
-      <Divider>
-        <Text fontSize="2xl" fontWeight="bold" textAlign="center">
-          {labels.movie_trending_headline}
-        </Text>
-      </Divider>
+      <Title headline={labels.movie_trending_headline} />
       <Grid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={{ base: '12', lg: '8' }}>
         {data?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
       </Grid>

@@ -2,8 +2,9 @@ import type { CreditsResponse } from '@/types'
 
 import { Link } from 'react-router'
 
+import { Title } from '@/components'
 import { labels } from '@/labels'
-import { Avatar, Box, Divider, Flex, Grid, Stack, Text } from '@/ui'
+import { Avatar, Box, Flex, Grid, Stack, Text } from '@/ui'
 
 type MovieCastProps = {
   cast: Pick<CreditsResponse, 'id' | 'name' | 'profile_path' | 'character'>[]
@@ -12,11 +13,7 @@ type MovieCastProps = {
 export const MovieCast = ({ cast }: MovieCastProps) => {
   return (
     <Box mt="6">
-      <Divider>
-        <Text fontWeight="black" textStyle="2xl">
-          {labels.common.cast}
-        </Text>
-      </Divider>
+      <Title headline={labels.common.cast} />
       {cast.length === 0 ? (
         <Text mt="8" textStyle="sm" color="fg.muted" textAlign="center">
           {labels.no_cast}

@@ -9,6 +9,7 @@ import { labels } from '@/labels'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery } from '@/services'
 import { AspectRatio, Box, Center, Flex, Image, Spinner, Stack, Text } from '@/ui'
+import { formatTimeToHoursAndMinutes } from '@/utils'
 
 export const MovieDetails = () => {
   const { id } = useParams()
@@ -73,11 +74,7 @@ export const MovieDetails = () => {
               <PiCalendarDotsThin size="16" />
               <Text>
                 {movie?.release_date
-                  ? new Date(movie.release_date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: '2-digit',
-                    })
+                  ? formatTimeToHoursAndMinutes(movie.release_date)
                   : `${labels.movie_no_premiere_date}`}
               </Text>
               <span>•</span>

@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { PiArrowBendUpLeftLight, PiPopcorn, PiSortAscending, PiSortDescending } from 'react-icons/pi'
+import { PiArrowBendUpLeftLight, PiPopcorn } from 'react-icons/pi'
 import { Link } from 'react-router'
+
+import { FavoritesSort } from './components'
 
 import { Error, MoviePreviewCard, PageHeader } from '@/components'
 import { labels } from '@/labels'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieFavoritesQuery } from '@/services'
 import {
-  Box,
   EmptyState,
   Flex,
   Grid,
@@ -15,7 +16,6 @@ import {
   PaginationNextTrigger,
   PaginationPrevTrigger,
   PaginationRoot,
-  SegmentField,
   Spinner,
 } from '@/ui'
 
@@ -50,19 +50,7 @@ export const MovieFavorites = () => {
       />
       {data && data?.results?.length ? (
         <>
-          <Box w="full">
-            <Flex ml="auto" maxW="48">
-              <SegmentField
-                name="direction"
-                onChange={value => setCreatedAtSort(value)}
-                defaultValue="created_at.desc"
-                options={[
-                  { label: <PiSortAscending />, value: 'created_at.asc' },
-                  { label: <PiSortDescending />, value: 'created_at.desc' },
-                ]}
-              />
-            </Flex>
-          </Box>
+          <FavoritesSort setCreatedAtSort={setCreatedAtSort} />
           <Grid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={{ base: '12', lg: '8' }}>
             {data?.results?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
           </Grid>

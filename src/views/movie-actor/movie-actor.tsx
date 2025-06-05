@@ -2,11 +2,12 @@ import { PiArrowBendUpLeftLight, PiImageBrokenThin } from 'react-icons/pi'
 import { SiImdb } from 'react-icons/si'
 import { Link, useParams } from 'react-router'
 
-import { Error, MoviePreviewCard, ScrollToTop } from '@/components'
+import { Error, MoviePreviewCard, ScrollToTop, Title } from '@/components'
 import { labels } from '@/labels'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieActorQuery, useGetMovieByActorQuery } from '@/services'
-import { AspectRatio, Center, Divider, Flex, Grid, Image, Spinner, Stack, Text } from '@/ui'
+import { AspectRatio, Center, Flex, Grid, Image, Spinner, Stack, Text } from '@/ui'
+import { formatTimeToHoursAndMinutes } from '@/utils'
 
 export const MovieActor = () => {
   const { id } = useParams()
@@ -62,13 +63,7 @@ export const MovieActor = () => {
             <Stack gap="1" direction="row" flexWrap="wrap">
               <Text fontWeight="semibold">Birthday:</Text>
               <Text color="fg.muted">
-                {actor?.birthday
-                  ? new Date(actor?.birthday).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: '2-digit',
-                    })
-                  : 'No information available'}
+                {actor?.birthday ? formatTimeToHoursAndMinutes(actor?.birthday) : 'No information available'}
               </Text>
             </Stack>
           </Stack>
@@ -95,11 +90,7 @@ export const MovieActor = () => {
           </AspectRatio>
         )}
       </Flex>
-      <Divider>
-        <Text fontSize="2xl" fontWeight="bold" color="fg.muted">
-          {labels.movies_appares_in}
-        </Text>
-      </Divider>
+      <Title headline={labels.movies_appares_in} />
       <Grid columns={{ base: 1, lg: 2, xl: 3 }} gap={{ base: '12', lg: '8' }} px={{ base: '0', md: '12', xl: '24' }}>
         {movies?.cast?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
       </Grid>

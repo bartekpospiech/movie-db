@@ -2,9 +2,9 @@ import type { MovieResultsEntity } from '@/types'
 
 import { PiPopcorn } from 'react-icons/pi'
 
-import { MoviePreviewCard } from '@/components'
+import { MoviePreviewCard, Title } from '@/components'
 import { labels } from '@/labels'
-import { Divider, EmptyState, Grid, Stack, Text } from '@/ui'
+import { EmptyState, Grid, Stack } from '@/ui'
 
 type SimilarMoviesProps = {
   similar: Pick<MovieResultsEntity, 'id' | 'title' | 'poster_path' | 'release_date' | 'overview' | 'vote_average'>[]
@@ -23,11 +23,7 @@ export const SimilarMovies = ({ similar }: SimilarMoviesProps) => {
 
   return (
     <Stack>
-      <Divider>
-        <Text fontWeight="black" textStyle="2xl">
-          {labels.common.similar_movies}
-        </Text>
-      </Divider>
+      <Title headline={labels.common.similar_movies} />
       <Grid
         columns={{ base: 1, md: 2, lg: 3 }}
         gap={{ base: '12', lg: '8' }}
