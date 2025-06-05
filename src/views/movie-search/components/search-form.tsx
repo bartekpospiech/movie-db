@@ -34,7 +34,7 @@ export const SearchForm = ({ setQuery }: SearchFormProps) => {
       flexWrap="wrap"
     >
       <InputGroup flex="1" startElement={<LuSearch size={20} />}>
-        <Input size="xl" placeholder={labels.movie_search_placeholder} onChange={debouncedResults} />
+        <Input placeholder={labels.movie_search_placeholder} onChange={debouncedResults} autoFocus autoComplete="off" />
       </InputGroup>
     </Stack>
   )

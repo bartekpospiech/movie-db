@@ -1,12 +1,5 @@
 import { createSystem, defaultConfig } from '@chakra-ui/react'
 
-import { theme } from './theme'
+import { config } from './config'
 
-export const system = createSystem(defaultConfig, {
-  globalCss: {
-    body: {
-      colorPalette: 'green',
-    },
-  },
-  theme,
-})
+export const system = createSystem(defaultConfig, config)
