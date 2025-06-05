@@ -1,8 +1,8 @@
-import { useAddMovieToFavoritesMutation } from '@/services'
-import { toaster } from '@/ui'
-
 import { PiHeartLight } from 'react-icons/pi'
 import { useNavigate } from 'react-router'
+
+import { useAddMovieToFavoritesMutation } from '@/services'
+import { toaster } from '@/ui'
 
 type AddToFavoritesProps = {
   movie?: {

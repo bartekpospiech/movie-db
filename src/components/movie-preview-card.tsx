@@ -1,3 +1,8 @@
+import type { MovieResultsEntity } from '@/types'
+
+import { PiImageBrokenThin } from 'react-icons/pi'
+import { Link } from 'react-router'
+
 import { labels } from '@/labels'
 import {
   AspectRatio,
@@ -12,11 +17,6 @@ import {
   Text,
 } from '@/ui'
 import { getGenreNamesByIds } from '@/utils'
-
-import { PiImageBrokenThin } from 'react-icons/pi'
-import { Link } from 'react-router'
-
-import type { MovieResultsEntity } from '@/types'
 
 type MoviePreviewCard = {
   movie: Pick<MovieResultsEntity, 'id' | 'title' | 'overview' | 'vote_average' | 'genre_ids' | 'poster_path'>

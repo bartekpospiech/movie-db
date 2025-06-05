@@ -1,8 +1,9 @@
+import YouTube from 'react-youtube'
+
 import { Error } from '@/components'
 import { labels } from '@/labels'
 import { useGetMovieImagesQuery, useGetMovieTrailerQuery } from '@/services'
-import { Stack, Divider, EmptyState, Flex, Grid, GridItem, Image, Skeleton, Text } from '@/ui'
-import YouTube from 'react-youtube'
+import { Divider, EmptyState, Flex, Grid, GridItem, Image, Skeleton, Stack, Text } from '@/ui'
 
 type MovieImagesProps = {
   id: number

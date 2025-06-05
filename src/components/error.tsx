@@ -1,10 +1,11 @@
-import { labels } from '@/labels'
-import { Flex } from '@/ui'
 import { PiArrowBendUpLeftLight } from 'react-icons/pi'
 import { Link } from 'react-router'
-import { APP_PATHS } from '@/routes'
 
 import { PageHeader } from './page-header'
+
+import { labels } from '@/labels'
+import { APP_PATHS } from '@/routes'
+import { Flex } from '@/ui'
 
 export const Error = () => {
   return (

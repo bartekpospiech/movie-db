@@ -1,14 +1,14 @@
-import { AspectRatio, Box, Center, Flex, Image, Spinner, Stack, Text } from '@/ui'
-import { useGetMovieDetailsQuery, useGetMovieCreditsQuery, useGetSimilarMoviesQuery } from '@/services'
-import { Error, ScrollToTop } from '@/components'
-import { APP_PATHS } from '@/routes'
-import { labels } from '@/labels'
-
+import { PiArrowBendUpLeftLight, PiCalendarDotsThin, PiImageBrokenThin, PiTimerThin } from 'react-icons/pi'
 import { Link } from 'react-router'
-import { PiArrowBendUpLeftLight, PiImageBrokenThin, PiTimerThin, PiCalendarDotsThin } from 'react-icons/pi'
 import { useParams } from 'react-router'
 
 import { AddToFavorites, MovieCast, MovieMedia, MovieTags, SimilarMovies } from './components'
+
+import { Error, ScrollToTop } from '@/components'
+import { labels } from '@/labels'
+import { APP_PATHS } from '@/routes'
+import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery } from '@/services'
+import { AspectRatio, Box, Center, Flex, Image, Spinner, Stack, Text } from '@/ui'
 
 export const MovieDetails = () => {
   const { id } = useParams()

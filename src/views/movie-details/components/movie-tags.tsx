@@ -1,5 +1,6 @@
-import { Stack, Tag } from '@/ui'
 import type { GenresEntity, ProductionCompaniesEntity } from '@/types'
+
+import { Stack, Tag } from '@/ui'
 
 type MovieTagsProps = {
   genres: GenresEntity[]

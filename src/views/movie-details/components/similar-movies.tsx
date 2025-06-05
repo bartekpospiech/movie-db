@@ -1,10 +1,10 @@
-import { labels } from '@/labels'
-import { Divider, EmptyState, Grid, Stack, Text } from '@/ui'
-import { MoviePreviewCard } from '@/components'
+import type { MovieResultsEntity } from '@/types'
 
 import { PiPopcorn } from 'react-icons/pi'
 
-import type { MovieResultsEntity } from '@/types'
+import { MoviePreviewCard } from '@/components'
+import { labels } from '@/labels'
+import { Divider, EmptyState, Grid, Stack, Text } from '@/ui'
 
 type SimilarMoviesProps = {
   similar: Pick<MovieResultsEntity, 'id' | 'title' | 'poster_path' | 'release_date' | 'overview' | 'vote_average'>[]

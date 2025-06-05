@@ -1,5 +1,11 @@
+import { useState } from 'react'
+import { PiArrowBendUpLeftLight, PiPopcorn, PiSortAscending, PiSortDescending } from 'react-icons/pi'
+import { Link } from 'react-router'
+
 import { Error, MoviePreviewCard, PageHeader } from '@/components'
 import { labels } from '@/labels'
+import { APP_PATHS } from '@/routes'
+import { useGetMovieFavoritesQuery } from '@/services'
 import {
   Box,
   EmptyState,
@@ -12,12 +18,6 @@ import {
   SegmentField,
   Spinner,
 } from '@/ui'
-import { useGetMovieFavoritesQuery } from '@/services'
-
-import { useState } from 'react'
-import { PiArrowBendUpLeftLight, PiPopcorn, PiSortAscending, PiSortDescending } from 'react-icons/pi'
-import { Link } from 'react-router'
-import { APP_PATHS } from '@/routes'
 
 export const MovieFavorites = () => {
   const [createdAtSort, setCreatedAtSort] = useState<string>('created_at.desc')

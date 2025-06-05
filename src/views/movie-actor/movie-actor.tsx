@@ -1,11 +1,12 @@
+import { PiArrowBendUpLeftLight, PiImageBrokenThin } from 'react-icons/pi'
+import { SiImdb } from 'react-icons/si'
+import { Link, useParams } from 'react-router'
+
 import { Error, MoviePreviewCard, ScrollToTop } from '@/components'
 import { labels } from '@/labels'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieActorQuery, useGetMovieByActorQuery } from '@/services'
 import { AspectRatio, Center, Divider, Flex, Grid, Image, Spinner, Stack, Text } from '@/ui'
-import { PiArrowBendUpLeftLight, PiImageBrokenThin } from 'react-icons/pi'
-import { SiImdb } from 'react-icons/si'
-import { Link, useParams } from 'react-router'
 
 export const MovieActor = () => {
   const { id } = useParams()

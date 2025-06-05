@@ -1,21 +1,21 @@
-import { labels } from '@/labels'
-import { Input, InputGroup, Stack } from '@/ui'
-import { LuSearch } from 'react-icons/lu'
 import debounce from 'lodash.debounce'
 import { useEffect, useMemo } from 'react'
+import { LuSearch } from 'react-icons/lu'
+
+import { labels } from '@/labels'
+import { Input, InputGroup, Stack } from '@/ui'
 
 type SearchFormProps = {
   setQuery: (query: string) => void
 }
 
 export const SearchForm = ({ setQuery }: SearchFormProps) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value)
-  }
-
   const debouncedResults = useMemo(() => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setQuery(e.target.value)
+    }
     return debounce(handleChange, 250)
-  }, [])
+  }, [setQuery])
 
   useEffect(() => {
     return () => {

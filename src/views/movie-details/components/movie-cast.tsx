@@ -1,8 +1,9 @@
+import type { CreditsResponse } from '@/types'
+
+import { Link } from 'react-router'
+
 import { labels } from '@/labels'
 import { Avatar, Box, Divider, Flex, Grid, Stack, Text } from '@/ui'
-
-import type { CreditsResponse } from '@/types'
-import { Link } from 'react-router'
 
 type MovieCastProps = {
   cast: Pick<CreditsResponse, 'id' | 'name' | 'profile_path' | 'character'>[]

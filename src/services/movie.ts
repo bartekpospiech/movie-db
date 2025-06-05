@@ -7,6 +7,7 @@ import type {
   ResultsEntity,
   TrailersResponse,
 } from '@/types'
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY

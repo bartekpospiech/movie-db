@@ -1,8 +1,9 @@
+import { PiArrowBendUpLeftLight } from 'react-icons/pi'
+import { Link } from 'react-router'
+
 import { PageHeader } from '@/components'
 import { APP_PATHS } from '@/routes'
 import { Flex } from '@/ui'
-import { PiArrowBendUpLeftLight } from 'react-icons/pi'
-import { Link } from 'react-router'
 
 export const NotFound = () => {
   return (

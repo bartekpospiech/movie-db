@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react'
+import { PiHeartLight, PiPopcorn } from 'react-icons/pi'
 import { Link } from 'react-router'
-import { PiPopcorn, PiHeartLight } from 'react-icons/pi'
+
+import { SearchForm } from './components'
+
 import { Error, ScrollToTop } from '@/components'
+import { MoviePreviewCard, PageHeader } from '@/components'
+import { labels } from '@/labels'
+import { APP_PATHS } from '@/routes'
+import { useSearchMoviesQuery } from '@/services'
 import {
   EmptyState,
   Flex,
@@ -11,12 +18,6 @@ import {
   PaginationPrevTrigger,
   PaginationRoot,
 } from '@/ui'
-import { MoviePreviewCard, PageHeader } from '@/components'
-import { labels } from '@/labels'
-import { APP_PATHS } from '@/routes'
-import { useSearchMoviesQuery } from '@/services'
-
-import { SearchForm } from './components'
 
 export const MovieSearch = () => {
   const [page, setPage] = useState(1)
