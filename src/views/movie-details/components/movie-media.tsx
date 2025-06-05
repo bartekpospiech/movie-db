@@ -85,7 +85,7 @@ export const MovieMedia = ({ id }: MovieImagesProps) => {
 
 const opts = {
   width: '100%',
-  height: '640px',
+  height: '640',
   playerVars: {
     autoplay: 0,
     controls: 0,

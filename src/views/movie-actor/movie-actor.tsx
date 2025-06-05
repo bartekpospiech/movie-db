@@ -65,6 +65,13 @@ export const MovieActor = () => {
               <Text color="fg.muted">
                 {actor?.birthday ? formatTimeToHoursAndMinutes(actor?.birthday) : 'No information available'}
               </Text>
+              {actor?.deathday && (
+                <>
+                  <span>•</span>
+                  <Text fontWeight="semibold">Deathday:</Text>
+                  <Text color="fg.muted">{formatTimeToHoursAndMinutes(actor?.deathday)}</Text>
+                </>
+              )}
             </Stack>
           </Stack>
           <Text fontSize="sm" _firstLetter={{ fontWeight: 'black' }} color="fg.muted">
