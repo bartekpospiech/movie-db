@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { PiHeartLight, PiPopcorn } from 'react-icons/pi'
 import { Link } from 'react-router'
 
-import { SearchForm } from './components'
+import { SearchForm, TrendingMovies } from './components'
 
 import { Error, ScrollToTop } from '@/components'
 import { MoviePreviewCard, PageHeader } from '@/components'
@@ -77,6 +77,7 @@ export const MovieSearch = () => {
           </PaginationRoot>
         )}
       </Flex>
+      {query.length < 2 && <TrendingMovies query={query} />}
       <ScrollToTop page={page} />
     </>
   )

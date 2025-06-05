@@ -3,6 +3,7 @@ import type {
   ImagesResponse,
   MovieByActorResponse,
   MovieResponse,
+  MovieResultsEntity,
   MoviesResponse,
   ResultsEntity,
   TrailersResponse,
@@ -26,6 +27,10 @@ export const movieApi = createApi({
     getMovieDetails: builder.query<MovieResponse, unknown, MovieResponse>({
       query: id => `/movie/${id}`,
       transformResponse: response => response,
+    }),
+    getTrendingMovies: builder.query<MovieResultsEntity[], unknown, MoviesResponse>({
+      query: () => '/trending/movie/week',
+      transformResponse: response => response.results?.slice(0, 4) ?? [],
     }),
     getMovieImages: builder.query<BackdropsEntityOrPostersEntity[], unknown, ImagesResponse>({
       query: id => `/movie/${id}/images`,
@@ -93,6 +98,7 @@ export const {
   useGetMovieDetailsQuery,
   useGetMovieImagesQuery,
   useGetMovieTrailerQuery,
+  useGetTrendingMoviesQuery,
   useGetMovieActorQuery,
   useGetMovieByActorQuery,
   useGetMovieCreditsQuery,

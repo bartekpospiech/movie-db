@@ -21,6 +21,7 @@ export const labels = {
   no_cast: 'Sounds weird but there is no cast information available for this movie.',
   movie_no_favorites_description: 'You have not added any movies to your favorites yet.',
   movie_no_premiere_date: 'No premiere date available.',
+  movie_trending_headline: 'Trending Movies This Week',
   common: {
     loading: 'Loading...',
     error: 'An error occurred. Please try again later.',

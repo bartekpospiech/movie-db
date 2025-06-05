@@ -25,8 +25,6 @@ export const MovieActor = () => {
     skip: !id,
   })
 
-  console.log(id)
-
   if (actorError || moviesError) {
     return <Error />
   }
