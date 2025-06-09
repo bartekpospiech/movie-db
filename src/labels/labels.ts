@@ -35,5 +35,6 @@ export const labels = {
     movie_gallery: 'Movie Gallery',
     movie_trailer: 'Movie Trailer',
     minutes: 'minutes',
+    popular: 'Popular',
   },
 }

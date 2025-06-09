@@ -3,31 +3,24 @@ import type { MovieResultsEntity } from '@/types'
 import { PiImageBrokenThin } from 'react-icons/pi'
 import { Link } from 'react-router'
 
-import { labels } from '@/labels'
-import {
-  AspectRatio,
-  Card,
-  Center,
-  Image,
-  ProgressCircleRing,
-  ProgressCircleRoot,
-  ProgressCircleValueText,
-  Stack,
-  Tag,
-  Text,
-} from '@/ui'
+import { PopularBadge } from './popular-badge'
+
+import { AspectRatio, Card, Center, Image, Rating, Stack, Tag, Text } from '@/ui'
 import { getGenreNamesByIds } from '@/utils'
 
 type MoviePreviewCard = {
-  movie: Pick<MovieResultsEntity, 'id' | 'title' | 'overview' | 'vote_average' | 'genre_ids' | 'poster_path'>
+  movie: Pick<
+    MovieResultsEntity,
+    'id' | 'title' | 'overview' | 'vote_average' | 'genre_ids' | 'poster_path' | 'vote_count'
+  >
 }
 
 export const MoviePreviewCard = ({ movie }: MoviePreviewCard) => {
-  const movieVoteAveragePercent = movie.vote_average ? Math.round(movie.vote_average * 10) : 0
   const genreNames = movie.genre_ids ? getGenreNamesByIds(movie.genre_ids as number[]) : []
 
   return (
-    <Card.Root overflow="hidden" boxShadow="xs" bgColor="bg.colorPalette">
+    <Card.Root overflow="hidden" boxShadow="sm" bgColor="bg.colorPalette" position="relative">
+      {movie.vote_count >= 1000 && movie.vote_average >= 7 && <PopularBadge />}
       <Card.Header p="0">
         {movie.poster_path ? (
           <Image
@@ -64,16 +57,8 @@ export const MoviePreviewCard = ({ movie }: MoviePreviewCard) => {
           </Text>
         </Stack>
       </Card.Body>
-      <Card.Footer>
-        <Stack gap="3" direction="row" alignItems="center">
-          <ProgressCircleRoot size="md" color="colorPalette.primary" value={movieVoteAveragePercent}>
-            <ProgressCircleRing color="colorPalette.primary" />
-            <ProgressCircleValueText>{movieVoteAveragePercent.toString().replace('%', '')}</ProgressCircleValueText>
-          </ProgressCircleRoot>
-          <Text textStyle="sm" color="fg.muted" fontWeight="bold">
-            {labels.movie_user_rating}
-          </Text>
-        </Stack>
+      <Card.Footer m="0 auto">
+        <Rating value={movie.vote_average} readOnly />
       </Card.Footer>
     </Card.Root>
   )

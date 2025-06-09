@@ -1,5 +1,7 @@
 export * from './error'
+export * from './footer'
 export * from './movie-preview-card'
 export * from './page-header'
+export * from './popular-badge'
 export * from './scroll-to-top'
 export * from './title'
