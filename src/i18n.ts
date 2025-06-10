@@ -12,9 +12,12 @@ i18n
   .init({
     preload: ['en'],
     fallbackLng: 'en',
-    debug: true,
+    debug: process.env.NODE_ENV === 'development',
     resources: resources,
     defaultNS: 'translation',
+    react: {
+      useSuspense: true,
+    },
   })
 
 export default i18n
