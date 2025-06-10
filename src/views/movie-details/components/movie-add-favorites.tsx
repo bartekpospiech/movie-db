@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { PiHeartLight } from 'react-icons/pi'
 import { useNavigate } from 'react-router'
 
@@ -11,6 +12,7 @@ type AddToFavoritesProps = {
 }
 
 export const AddToFavorites = ({ movie }: AddToFavoritesProps) => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [addMovieToFavorites] = useAddMovieToFavoritesMutation()
 
@@ -24,10 +26,10 @@ export const AddToFavorites = ({ movie }: AddToFavoritesProps) => {
           id: movie ? movie.id : 0,
         }).then(() => {
           toaster.create({
-            description: 'Movie added to favorites',
+            description: t('added_to_favorites'),
             type: 'success',
             action: {
-              label: 'View Favorites',
+              label: t('common.view_favorites'),
               onClick: () => {
                 navigate('/favorites')
                 window.scrollTo(0, 0)

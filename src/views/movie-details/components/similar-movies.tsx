@@ -1,21 +1,25 @@
 import type { MovieResultsEntity } from '@/types'
 
+import { useTranslation } from 'react-i18next'
 import { PiPopcorn } from 'react-icons/pi'
 
 import { MoviePreviewCard, Title } from '@/components'
-import { labels } from '@/labels'
 import { EmptyState, Grid, Stack } from '@/ui'
 
 type SimilarMoviesProps = {
-  similar: Pick<MovieResultsEntity, 'id' | 'title' | 'poster_path' | 'release_date' | 'overview' | 'vote_average'>[]
+  similar: Pick<
+    MovieResultsEntity,
+    'id' | 'title' | 'poster_path' | 'release_date' | 'overview' | 'vote_average' | 'vote_count'
+  >[]
 }
 
 export const SimilarMovies = ({ similar }: SimilarMoviesProps) => {
+  const { t } = useTranslation()
   if (!similar || similar.length === 0) {
     return (
       <EmptyState
-        title={labels.no_similar_movies}
-        description={labels.no_similar_movies_description}
+        title={t('no_similar_movies')}
+        description={t('no_similar_movies_description')}
         icon={<PiPopcorn fill="colorPalette.green" />}
       />
     )
@@ -23,7 +27,7 @@ export const SimilarMovies = ({ similar }: SimilarMoviesProps) => {
 
   return (
     <Stack>
-      <Title headline={labels.common.similar_movies} />
+      <Title headline={t('common.similar_movies')} />
       <Grid
         columns={{ base: 1, md: 2, lg: 3 }}
         gap={{ base: '12', lg: '8' }}

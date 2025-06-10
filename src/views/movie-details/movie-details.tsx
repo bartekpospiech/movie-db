@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { PiArrowBendUpLeftLight, PiCalendarDotsThin, PiImageBrokenThin, PiTimerThin } from 'react-icons/pi'
 import { Link } from 'react-router'
 import { useParams } from 'react-router'
@@ -5,13 +6,13 @@ import { useParams } from 'react-router'
 import { AddToFavorites, MovieCast, MovieMedia, MovieTags, SimilarMovies } from './components'
 
 import { Error, ScrollToTop } from '@/components'
-import { labels } from '@/labels'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery } from '@/services'
 import { AspectRatio, Box, Center, Flex, Image, Spinner, Stack, Text } from '@/ui'
 import { formatTimeToHoursAndMinutes } from '@/utils'
 
 export const MovieDetails = () => {
+  const { t } = useTranslation()
   const { id } = useParams()
   const {
     data: movie,
@@ -75,7 +76,7 @@ export const MovieDetails = () => {
               <Text>
                 {movie?.release_date
                   ? formatTimeToHoursAndMinutes(movie.release_date)
-                  : `${labels.movie_no_premiere_date}`}
+                  : `${t('movie_no_premiere_date')}`}
               </Text>
               <span>•</span>
               <PiTimerThin size="16" />

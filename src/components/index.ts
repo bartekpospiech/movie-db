@@ -1,3 +1,4 @@
+export * from './change-lang'
 export * from './error'
 export * from './footer'
 export * from './movie-preview-card'

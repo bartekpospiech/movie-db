@@ -1,8 +1,8 @@
 import debounce from 'lodash.debounce'
 import { useEffect, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { LuSearch } from 'react-icons/lu'
 
-import { labels } from '@/labels'
 import { Input, InputGroup, Stack } from '@/ui'
 
 type SearchFormProps = {
@@ -10,6 +10,7 @@ type SearchFormProps = {
 }
 
 export const SearchForm = ({ setQuery }: SearchFormProps) => {
+  const { t } = useTranslation()
   const debouncedResults = useMemo(() => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setQuery(e.target.value)
@@ -34,7 +35,7 @@ export const SearchForm = ({ setQuery }: SearchFormProps) => {
       flexWrap="wrap"
     >
       <InputGroup flex="1" startElement={<LuSearch size={20} />}>
-        <Input placeholder={labels.movie_search_placeholder} onChange={debouncedResults} autoFocus autoComplete="off" />
+        <Input placeholder={t('movie_search_placeholder')} onChange={debouncedResults} autoFocus autoComplete="off" />
       </InputGroup>
     </Stack>
   )

@@ -1,15 +1,16 @@
+import { useTranslation } from 'react-i18next'
 import { PiArrowBendUpLeftLight, PiImageBrokenThin } from 'react-icons/pi'
 import { SiImdb } from 'react-icons/si'
 import { Link, useParams } from 'react-router'
 
 import { Error, MoviePreviewCard, ScrollToTop, Title } from '@/components'
-import { labels } from '@/labels'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieActorQuery, useGetMovieByActorQuery } from '@/services'
 import { AspectRatio, Center, Flex, Grid, Image, Spinner, Stack, Text } from '@/ui'
 import { formatTimeToHoursAndMinutes } from '@/utils'
 
 export const MovieActor = () => {
+  const { t } = useTranslation()
   const { id } = useParams()
   const {
     data: actor,
@@ -61,14 +62,14 @@ export const MovieActor = () => {
           </Stack>
           <Stack mt="2" gap="2">
             <Stack gap="1" direction="row" flexWrap="wrap">
-              <Text fontWeight="semibold">Birthday:</Text>
+              <Text fontWeight="semibold">{t('common.birthday')}</Text>
               <Text color="fg.muted">
                 {actor?.birthday ? formatTimeToHoursAndMinutes(actor?.birthday) : 'No information available'}
               </Text>
               {actor?.deathday && (
                 <>
                   <span>•</span>
-                  <Text fontWeight="semibold">Deathday:</Text>
+                  <Text fontWeight="semibold">{t('common.deathday')}</Text>
                   <Text color="fg.muted">{formatTimeToHoursAndMinutes(actor?.deathday)}</Text>
                 </>
               )}
@@ -97,7 +98,7 @@ export const MovieActor = () => {
           </AspectRatio>
         )}
       </Flex>
-      <Title headline={labels.movies_appares_in} />
+      <Title headline={t('movies_appares_in')} />
       <Grid columns={{ base: 1, lg: 2, xl: 3 }} gap={{ base: '12', lg: '8' }} px={{ base: '0', md: '12', xl: '24' }}>
         {movies?.cast?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
       </Grid>

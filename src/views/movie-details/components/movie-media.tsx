@@ -1,7 +1,7 @@
+import { useTranslation } from 'react-i18next'
 import YouTube from 'react-youtube'
 
 import { Error, Title } from '@/components'
-import { labels } from '@/labels'
 import { useGetMovieImagesQuery, useGetMovieTrailerQuery } from '@/services'
 import { Box, EmptyState, Flex, Grid, GridItem, Image, Skeleton, Stack } from '@/ui'
 
@@ -10,6 +10,7 @@ type MovieImagesProps = {
 }
 
 export const MovieMedia = ({ id }: MovieImagesProps) => {
+  const { t } = useTranslation()
   const {
     data: images,
     isLoading: imagesLoading,
@@ -48,13 +49,13 @@ export const MovieMedia = ({ id }: MovieImagesProps) => {
   }
 
   if (!images || images?.length === 0 || !trailer || !trailer.key) {
-    return <EmptyState title={labels.movie_no_media} description={labels.movie_no_media_description} />
+    return <EmptyState title={t('movie_no_media')} description={t('movie_no_media_description')} />
   }
 
   return (
     <>
       <Stack gap="8" mt="6">
-        <Title headline={labels.common.movie_gallery} />
+        <Title headline={t('common.movie_gallery')} />
         <Grid
           templateColumns="repeat(auto-fill, minmax(360px, 1fr))"
           gap="4"
@@ -74,7 +75,7 @@ export const MovieMedia = ({ id }: MovieImagesProps) => {
             </GridItem>
           ))}
         </Grid>
-        <Title headline={labels.common.movie_trailer} />
+        <Title headline={t('common.movie_trailer')} />
         <Box borderRadius="md" overflow="hidden">
           <YouTube id={trailer?.key || ''} videoId={trailer?.key || ''} opts={opts} />
         </Box>

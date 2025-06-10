@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { PiArrowBendUpLeftLight, PiPopcorn } from 'react-icons/pi'
 import { Link } from 'react-router'
 
 import { FavoritesSort } from './components'
 
 import { Error, MoviePreviewCard, PageHeader } from '@/components'
-import { labels } from '@/labels'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieFavoritesQuery } from '@/services'
 import {
@@ -20,6 +20,7 @@ import {
 } from '@/ui'
 
 export const MovieFavorites = () => {
+  const { t } = useTranslation()
   const [createdAtSort, setCreatedAtSort] = useState<string>('created_at.desc')
   const [page, setPage] = useState(1)
   const { data, isError, isLoading } = useGetMovieFavoritesQuery(
@@ -43,8 +44,8 @@ export const MovieFavorites = () => {
         <PiArrowBendUpLeftLight fill="green" size="32" />
       </Link>
       <PageHeader
-        headline={labels.movie_favorites_headline}
-        description={labels.movie_favorites_description}
+        headline={t('movie_favorites_headline')}
+        description={t('movie_favorites_description')}
         textAlign="center"
         alignItems="center"
       />
@@ -57,8 +58,8 @@ export const MovieFavorites = () => {
         </>
       ) : (
         <EmptyState
-          title={labels.movie_no_favorites}
-          description={labels.movie_no_favorites_description}
+          title={t('movie_no_favorites')}
+          description={t('movie_no_favorites_description')}
           icon={<PiPopcorn fill="colorPalette.green" />}
         />
       )}

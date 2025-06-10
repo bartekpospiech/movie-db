@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { PiArrowBendUpLeftLight } from 'react-icons/pi'
 import { Link } from 'react-router'
 
@@ -6,11 +7,13 @@ import { APP_PATHS } from '@/routes'
 import { Flex } from '@/ui'
 
 export const NotFound = () => {
+  const { t } = useTranslation()
+
   return (
     <Flex justify="center" align="center" direction="column" gap="6" mt="12">
       <PageHeader
-        headline="Page Not Found"
-        description="The page you are looking for does not exist."
+        headline={t('common.page_not_found')}
+        description={t('common.page_not_found_description')}
         textAlign="center"
         alignItems="center"
       />

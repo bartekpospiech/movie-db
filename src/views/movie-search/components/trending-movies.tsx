@@ -1,9 +1,11 @@
+import { useTranslation } from 'react-i18next'
+
 import { Error, MoviePreviewCard, Title } from '@/components'
-import { labels } from '@/labels'
 import { useGetTrendingMoviesQuery } from '@/services'
 import { Flex, Grid, Skeleton, Stack } from '@/ui'
 
 export const TrendingMovies = ({ query }: { query: string }) => {
+  const { t } = useTranslation()
   const { data, isLoading, isError } = useGetTrendingMoviesQuery({
     skip: query.length < 2,
   })
@@ -27,7 +29,7 @@ export const TrendingMovies = ({ query }: { query: string }) => {
 
   return (
     <>
-      <Title headline={labels.movie_trending_headline} />
+      <Title headline={t('movie_trending_headline')} />
       <Grid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={{ base: '12', lg: '8' }}>
         {data?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
       </Grid>
