@@ -3,10 +3,10 @@ import { PiArrowBendUpLeftLight, PiImageBrokenThin } from 'react-icons/pi'
 import { SiImdb } from 'react-icons/si'
 import { Link, useParams } from 'react-router'
 
-import { Error, MoviePreviewCard, ScrollToTop, Title } from '@/components'
+import { Error, LazyImage, MoviePreviewCard, ScrollToTop, Title } from '@/components'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieActorQuery, useGetMovieByActorQuery } from '@/services'
-import { AspectRatio, Center, Flex, Grid, Image, Spinner, Stack, Text } from '@/ui'
+import { AspectRatio, Center, Flex, Grid, Spinner, Stack, Text } from '@/ui'
 import { formatTimeToHoursAndMinutes } from '@/utils'
 
 export const MovieActor = () => {
@@ -87,14 +87,12 @@ export const MovieActor = () => {
         </Stack>
 
         {actor.profile_path ? (
-          <Image
+          <LazyImage
             src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}.jpg`}
-            objectFit="cover"
             aspectRatio={1 / 1}
-            borderRadius="xl"
-            shadow="md"
             alt={actor.name}
-            maxH="480px"
+            w="480px"
+            h="full"
           />
         ) : (
           <AspectRatio ratio={1 / 1} w="480px" h="full" maxH="480px">
