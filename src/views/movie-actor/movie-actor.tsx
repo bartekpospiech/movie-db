@@ -10,22 +10,28 @@ import { AspectRatio, Center, Flex, Grid, Image, Spinner, Stack, Text } from '@/
 import { formatTimeToHoursAndMinutes } from '@/utils'
 
 export const MovieActor = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { id } = useParams()
   const {
     data: actor,
     isLoading: actorLoading,
     isError: actorError,
-  } = useGetMovieActorQuery(id, {
-    skip: !id,
-  })
+  } = useGetMovieActorQuery(
+    { id, language: i18n.language },
+    {
+      skip: !id,
+    }
+  )
   const {
     data: movies,
     isLoading: moviesLoading,
     isError: moviesError,
-  } = useGetMovieByActorQuery(id ? id : '0', {
-    skip: !id,
-  })
+  } = useGetMovieByActorQuery(
+    { id: id ? id : '0', language: i18n.language },
+    {
+      skip: !id,
+    }
+  )
 
   if (actorError || moviesError) {
     return <Error />

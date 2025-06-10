@@ -20,11 +20,11 @@ import {
 } from '@/ui'
 
 export const MovieFavorites = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [createdAtSort, setCreatedAtSort] = useState<string>('created_at.desc')
   const [page, setPage] = useState(1)
   const { data, isError, isLoading } = useGetMovieFavoritesQuery(
-    { page, createdAtSort },
+    { page, createdAtSort, language: i18n.language },
     {
       skip: !createdAtSort,
     }

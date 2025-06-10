@@ -12,14 +12,14 @@ import { useSearchMoviesQuery } from '@/services'
 import { Flex } from '@/ui'
 
 export const MovieSearch = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [page, setPage] = useState(1)
   const [query, setQuery] = useState('')
-  const { data, isError } = useSearchMoviesQuery({ query, page }, { skip: query.length < 2 })
+  const { data, isError } = useSearchMoviesQuery({ query, page, language: i18n.language }, { skip: query.length < 2 })
 
   useEffect(() => {
     setPage(1)
-  }, [query])
+  }, [query, i18n.language])
 
   if (isError) {
     return <Error />

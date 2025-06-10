@@ -24,12 +24,12 @@ export const movieApi = createApi({
     },
   }),
   endpoints: builder => ({
-    getMovieDetails: builder.query<MovieResponse, string, MovieResponse>({
-      query: id => `/movie/${id}`,
+    getMovieDetails: builder.query<MovieResponse, { id: string; language: string }, MovieResponse>({
+      query: ({ id, language }) => `/movie/${id}?language=${language}`,
       transformResponse: response => response,
     }),
-    getTrendingMovies: builder.query<MovieResultsEntity[], unknown, MoviesResponse>({
-      query: () => '/trending/movie/week',
+    getTrendingMovies: builder.query<MovieResultsEntity[], string, MoviesResponse>({
+      query: language => `/trending/movie/week?language=${language}`,
       transformResponse: response => response.results?.slice(0, 4) ?? [],
     }),
     getMovieImages: builder.query<BackdropsEntityOrPostersEntity[], number, ImagesResponse>({
@@ -57,11 +57,11 @@ export const movieApi = createApi({
       },
     }),
     getMovieActor: builder.query({
-      query: id => `/person/${id}`,
+      query: ({ id, language }) => `/person/${id}?language=${language}`,
       transformResponse: response => response,
     }),
-    getMovieByActor: builder.query<MovieByActorResponse, string, MovieByActorResponse>({
-      query: id => `/person/${id}/combined_credits`,
+    getMovieByActor: builder.query<MovieByActorResponse, { id: string; language: string }, MovieByActorResponse>({
+      query: ({ id, language }) => `/person/${id}/combined_credits?language=${language}`,
       transformResponse: response => response,
     }),
     getMovieCredits: builder.query({
@@ -69,15 +69,16 @@ export const movieApi = createApi({
       transformResponse: response => response,
     }),
     getMovieFavorites: builder.query<MoviesResponse, unknown, MoviesResponse>({
-      query: ({ page = 1, createdAtSort }) => `/account/22040515/favorite/movies?page=${page}&sort_by=${createdAtSort}`,
+      query: ({ page = 1, createdAtSort, language }) =>
+        `/account/22040515/favorite/movies?page=${page}&sort_by=${createdAtSort}&language=${language}`,
       transformResponse: response => response,
     }),
     getSimilarMovies: builder.query({
-      query: ({ id, page = 1 }) => `/movie/${id}/similar?page=${page}`,
+      query: ({ id, page = 1, language }) => `/movie/${id}/similar?page=${page}&language=${language}`,
       transformResponse: response => response,
     }),
-    searchMovies: builder.query<MoviesResponse, { query: string; page: number }, MoviesResponse>({
-      query: ({ query, page = 1 }) => `/search/movie?query=${query}&page=${page}`,
+    searchMovies: builder.query<MoviesResponse, { query: string; page: number; language: string }, MoviesResponse>({
+      query: ({ query, page = 1, language }) => `/search/movie?query=${query}&page=${page}&language=${language}`,
       transformResponse: response => response,
     }),
     addMovieToFavorites: builder.mutation<unknown, { id: number }>({

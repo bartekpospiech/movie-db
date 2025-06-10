@@ -12,15 +12,18 @@ import { AspectRatio, Box, Center, Flex, Image, Spinner, Stack, Text } from '@/u
 import { formatTimeToHoursAndMinutes } from '@/utils'
 
 export const MovieDetails = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { id } = useParams()
   const {
     data: movie,
     isLoading: movieLoading,
     isError: movieError,
-  } = useGetMovieDetailsQuery(id ? id : '0', {
-    skip: !id,
-  })
+  } = useGetMovieDetailsQuery(
+    { id: id ? id : '0', language: i18n.language },
+    {
+      skip: !id,
+    }
+  )
   const {
     data: credits,
     isLoading: creditsLoading,
@@ -33,7 +36,7 @@ export const MovieDetails = () => {
     isLoading: similarLoading,
     isError: similarError,
   } = useGetSimilarMoviesQuery(
-    { id, page: 1 },
+    { id, page: 1, language: i18n.language },
     {
       skip: !id,
     }
