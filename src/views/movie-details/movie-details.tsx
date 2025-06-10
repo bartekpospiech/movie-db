@@ -5,10 +5,10 @@ import { useParams } from 'react-router'
 
 import { AddToFavorites, MovieCast, MovieMedia, MovieTags, SimilarMovies } from './components'
 
-import { Error, ScrollToTop } from '@/components'
+import { Error, LazyImage, ScrollToTop } from '@/components'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery } from '@/services'
-import { AspectRatio, Box, Center, Flex, Image, Spinner, Stack, Text } from '@/ui'
+import { AspectRatio, Box, Center, Flex, Spinner, Stack, Text } from '@/ui'
 import { formatTimeToHoursAndMinutes } from '@/utils'
 
 export const MovieDetails = () => {
@@ -62,8 +62,8 @@ export const MovieDetails = () => {
       </Flex>
       <Flex direction={{ base: 'column', md: 'row' }} gap="12" align={{ md: 'center' }}>
         {movie && movie.poster_path ? (
-          <Box flex="1 0 fit-content" maxW={{ base: '100%', md: '400px' }} m="0 auto">
-            <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} borderRadius="lg" />
+          <Box flex="1 0 fit-content" maxW={{ base: '100%', md: '400px' }} m="0 auto" overflow="hidden">
+            <LazyImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
           </Box>
         ) : (
           <AspectRatio ratio={3 / 4} w="full" h="full" maxW={{ base: '100%', md: '400px' }}>

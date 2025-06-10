@@ -3,9 +3,10 @@ import type { MovieResultsEntity } from '@/types'
 import { PiImageBrokenThin } from 'react-icons/pi'
 import { Link } from 'react-router'
 
+import { LazyImage } from './lazy-image'
 import { PopularBadge } from './popular-badge'
 
-import { AspectRatio, Card, Center, Image, Rating, Stack, Tag, Text } from '@/ui'
+import { AspectRatio, Card, Center, Rating, Stack, Tag, Text } from '@/ui'
 import { getGenreNamesByIds } from '@/utils'
 
 type MoviePreviewCard = {
@@ -23,11 +24,7 @@ export const MoviePreviewCard = ({ movie }: MoviePreviewCard) => {
       {movie.vote_count >= 1000 && movie.vote_average >= 7 && <PopularBadge />}
       <Card.Header p="0">
         {movie.poster_path ? (
-          <Image
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}.jpg`}
-            objectFit="cover"
-            aspectRatio={3 / 4}
-          />
+          <LazyImage src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}.jpg`} alt={movie.title} />
         ) : (
           <AspectRatio ratio={3 / 4} w="full" h="full">
             <Center w="full" h="full" bg="bg.muted" color="fg.subtle">

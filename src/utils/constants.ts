@@ -76,3 +76,6 @@ export const genres = [
     name: 'Western',
   },
 ]
+
+export const one_pixel_placeholder =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUW+y1HwADngHEN2ffBQAAAABJRU5ErkJggg=='

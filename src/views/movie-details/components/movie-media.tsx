@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import YouTube from 'react-youtube'
 
-import { Error, Title } from '@/components'
+import { Error, LazyImage, Title } from '@/components'
 import { useGetMovieImagesQuery, useGetMovieTrailerQuery } from '@/services'
-import { Box, EmptyState, Flex, Grid, GridItem, Image, Skeleton, Stack } from '@/ui'
+import { AspectRatio, EmptyState, Flex, Grid, GridItem, Skeleton, Stack } from '@/ui'
 
 type MovieImagesProps = {
   id: number
@@ -53,34 +53,25 @@ export const MovieMedia = ({ id }: MovieImagesProps) => {
   }
 
   return (
-    <>
-      <Stack gap="8" mt="6">
-        <Title headline={t('common.movie_gallery')} />
-        <Grid
-          templateColumns="repeat(auto-fill, minmax(360px, 1fr))"
-          gap="4"
-          justifyContent="center"
-          alignItems="center"
-        >
-          {images?.map(image => (
-            <GridItem key={image.file_path}>
-              <Image
-                key={image.file_path}
-                src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
-                alt={image.file_path}
-                w="100%"
-                h="auto"
-                borderRadius="md"
-              />
-            </GridItem>
-          ))}
-        </Grid>
-        <Title headline={t('common.movie_trailer')} />
-        <Box borderRadius="md" overflow="hidden">
-          <YouTube id={trailer?.key || ''} videoId={trailer?.key || ''} opts={opts} />
-        </Box>
-      </Stack>
-    </>
+    <Stack gap="8" mt="6">
+      <Title headline={t('common.movie_gallery')} />
+      <Grid templateColumns="repeat(auto-fill, minmax(360px, 1fr))" gap="4" justifyContent="center" alignItems="center">
+        {images?.map(image => (
+          <GridItem key={image.file_path}>
+            <LazyImage
+              key={image.file_path}
+              src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
+              alt={image.file_path}
+              aspectRatio={16 / 9}
+            />
+          </GridItem>
+        ))}
+      </Grid>
+      <Title headline={t('common.movie_trailer')} />
+      <AspectRatio ratio={16 / 6} w="full" h="full" maxW="100%" borderRadius="md" overflow="hidden">
+        <YouTube id={trailer?.key || ''} videoId={trailer?.key || ''} opts={opts} />
+      </AspectRatio>
+    </Stack>
   )
 }
 
