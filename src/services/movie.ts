@@ -5,6 +5,8 @@ import type {
   MovieResponse,
   MovieResultsEntity,
   MoviesResponse,
+  Provider,
+  ProvidersResonse,
   ResultsEntity,
   TrailersResponse,
 } from '@/types'
@@ -68,6 +70,10 @@ export const movieApi = createApi({
       query: id => `/movie/${id}/credits`,
       transformResponse: response => response,
     }),
+    getMovieServices: builder.query<Provider, number, ProvidersResonse>({
+      query: id => `/movie/${id}/watch/providers`,
+      transformResponse: response => response.results,
+    }),
     getMovieFavorites: builder.query<MoviesResponse, unknown, MoviesResponse>({
       query: ({ page = 1, createdAtSort, language }) =>
         `/account/22040515/favorite/movies?page=${page}&sort_by=${createdAtSort}&language=${language}`,
@@ -106,5 +112,6 @@ export const {
   useGetSimilarMoviesQuery,
   useGetMovieFavoritesQuery,
   useSearchMoviesQuery,
+  useGetMovieServicesQuery,
   useAddMovieToFavoritesMutation,
 } = movieApi

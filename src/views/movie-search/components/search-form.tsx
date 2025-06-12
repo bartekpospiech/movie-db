@@ -1,3 +1,5 @@
+import type { ChangeEvent } from 'react'
+
 import debounce from 'lodash.debounce'
 import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -12,10 +14,10 @@ type SearchFormProps = {
 export const SearchForm = ({ setQuery }: SearchFormProps) => {
   const { t } = useTranslation()
   const debouncedResults = useMemo(() => {
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       setQuery(e.target.value)
     }
-    return debounce(handleChange, 250)
+    return debounce(handleChange, 300)
   }, [setQuery])
 
   useEffect(() => {

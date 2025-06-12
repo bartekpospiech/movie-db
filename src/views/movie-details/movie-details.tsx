@@ -3,7 +3,7 @@ import { PiArrowBendUpLeftLight, PiCalendarDotsThin, PiImageBrokenThin, PiTimerT
 import { Link } from 'react-router'
 import { useParams } from 'react-router'
 
-import { AddToFavorites, MovieCast, MovieMedia, MovieTags, SimilarMovies } from './components'
+import { AddToFavorites, MovieCast, MovieMedia, MovieTags, MovieWatchProviders, SimilarMovies } from './components'
 
 import { Error, LazyImage, ScrollToTop } from '@/components'
 import { APP_PATHS } from '@/routes'
@@ -61,17 +61,20 @@ export const MovieDetails = () => {
         <AddToFavorites movie={movie} />
       </Flex>
       <Flex direction={{ base: 'column', md: 'row' }} gap="12" align={{ md: 'center' }}>
-        {movie && movie.poster_path ? (
-          <Box flex="1 0 fit-content" maxW={{ base: '100%', md: '400px' }} m="0 auto" overflow="hidden">
-            <LazyImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-          </Box>
-        ) : (
-          <AspectRatio ratio={3 / 4} w="full" h="full" maxW={{ base: '100%', md: '400px' }}>
-            <Center bg="bg.muted" color="fg.subtle">
-              <PiImageBrokenThin size="48px" />
-            </Center>
-          </AspectRatio>
-        )}
+        <Flex direction="column" flex="1 0 fit-content" gap="6" w="480px">
+          {movie && movie.poster_path ? (
+            <Box m="0 auto" overflow="hidden">
+              <LazyImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+            </Box>
+          ) : (
+            <AspectRatio ratio={3 / 4} w="full" h="full" maxW={{ base: '100%', md: '400px' }}>
+              <Center bg="bg.muted" color="fg.subtle">
+                <PiImageBrokenThin size="48px" />
+              </Center>
+            </AspectRatio>
+          )}
+          <MovieWatchProviders id={movie?.id} />
+        </Flex>
         <Stack>
           <Stack flex="1" gap="3">
             <Stack color="fg.muted" textStyle="sm" direction="row" alignItems="center">
