@@ -279,9 +279,9 @@ export interface Provider {
 }
 export interface ProviderCountryCode {
   link: string
-  flatrate?: ProviderEntity[] | null
-  buy?: ProviderEntity[] | null
-  rent?: ProviderEntity[] | null
+  flatrate?: ProviderEntity[]
+  buy?: ProviderEntity[]
+  rent?: ProviderEntity[]
 }
 export interface ProviderEntity {
   logo_path: string
