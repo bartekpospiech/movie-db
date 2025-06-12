@@ -9,7 +9,7 @@ type MovieWatchProvidersProps = {
 }
 
 export const MovieWatchProviders = ({ id }: MovieWatchProvidersProps) => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { data: providers, isLoading: providersLoading, error: providersError } = useGetMovieServicesQuery(id)
 
   if (providersError) {
@@ -27,24 +27,10 @@ export const MovieWatchProviders = ({ id }: MovieWatchProvidersProps) => {
     <Stack>
       {filteredProviders?.buy && (
         <>
-          <Title headline="Buy" size="md" />
+          <Title headline={t('common.buy')} size="md" />
           <Grid columns={{ base: 2, lg: 2 }} gap="4" my="4" flexWrap="wrap">
             {filteredProviders.buy.map(provider => (
-              <Flex gap="3" align="center" flex="1 0 fit-content" key={provider.provider_id}>
-                <Avatar
-                  name={provider.provider_name}
-                  src={`https://image.tmdb.org/t/p/w200${provider.logo_path}`}
-                  size="lg"
-                  borderColor="colorPalette.600"
-                  borderWidth="1px"
-                  filter="grayscale(1)"
-                />
-                <Stack gap="0">
-                  <Text fontWeight="black" textStyle="sm">
-                    {provider.provider_name}
-                  </Text>
-                </Stack>
-              </Flex>
+              <AvatarProviderLogo provider={provider} />
             ))}
           </Grid>
         </>
@@ -52,24 +38,10 @@ export const MovieWatchProviders = ({ id }: MovieWatchProvidersProps) => {
 
       {filteredProviders?.rent && (
         <>
-          <Title headline="Rent" size="md" />
+          <Title headline={t('common.rent')} size="md" />
           <Grid columns={{ base: 2, lg: 2 }} gap="4" my="4" flexWrap="wrap">
             {filteredProviders.rent.map(provider => (
-              <Flex gap="3" align="center" flex="1 0 fit-content" key={provider.provider_id}>
-                <Avatar
-                  name={provider.provider_name}
-                  src={`https://image.tmdb.org/t/p/w200${provider.logo_path}`}
-                  size="lg"
-                  borderColor="colorPalette.600"
-                  borderWidth="1px"
-                  filter="grayscale(1)"
-                />
-                <Stack gap="0">
-                  <Text fontWeight="black" textStyle="sm">
-                    {provider.provider_name}
-                  </Text>
-                </Stack>
-              </Flex>
+              <AvatarProviderLogo provider={provider} />
             ))}
           </Grid>
         </>
@@ -77,28 +49,38 @@ export const MovieWatchProviders = ({ id }: MovieWatchProvidersProps) => {
 
       {filteredProviders?.flatrate && (
         <>
-          <Title headline="Stream" size="md" />
+          <Title headline={t('common.stream')} size="md" />
           <Grid columns={{ base: 2, lg: 2 }} gap="4" my="4" flexWrap="wrap">
             {filteredProviders.flatrate.map(provider => (
-              <Flex gap="3" align="center" flex="1 0 fit-content" key={provider.provider_id}>
-                <Avatar
-                  name={provider.provider_name}
-                  src={`https://image.tmdb.org/t/p/w200${provider.logo_path}`}
-                  size="lg"
-                  borderColor="colorPalette.600"
-                  borderWidth="1px"
-                  filter="grayscale(1)"
-                />
-                <Stack gap="0">
-                  <Text fontWeight="black" textStyle="sm">
-                    {provider.provider_name}
-                  </Text>
-                </Stack>
-              </Flex>
+              <AvatarProviderLogo provider={provider} />
             ))}
           </Grid>
         </>
       )}
     </Stack>
+  )
+}
+
+const AvatarProviderLogo = ({
+  provider,
+}: {
+  provider: { provider_name: string; logo_path: string; provider_id: number }
+}) => {
+  return (
+    <Flex gap="3" align="center" flex="1 0 fit-content" key={provider.provider_id}>
+      <Avatar
+        name={provider.provider_name}
+        src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
+        size="lg"
+        borderColor="colorPalette.600"
+        borderWidth="1px"
+        filter="grayscale(1)"
+      />
+      <Stack gap="0">
+        <Text fontWeight="black" textStyle="sm">
+          {provider.provider_name}
+        </Text>
+      </Stack>
+    </Flex>
   )
 }

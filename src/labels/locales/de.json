@@ -5,6 +5,7 @@
     "back_to_home": "Zurück zur Startseite",
     "back_to_search": "Zurück zur Suche",
     "birthday": "Geburtstag",
+    "buy": "Kaufen",
     "cast": "Besetzung",
     "deathday": "Todestag",
     "error": "Ein Fehler ist aufgetreten. Bitte versuche es später erneut.",
@@ -18,7 +19,9 @@
     "page_not_found": "Seite nicht gefunden",
     "page_not_found_description": "Die von dir gesuchte Seite existiert nicht.",
     "popular": "Beliebt",
+    "rent": "Mieten",
     "similar_movies": "Ähnliche Filme",
+    "stream": "Streamen",
     "view_details": "Details anzeigen",
     "view_favorites": "Favoriten anzeigen"
   },

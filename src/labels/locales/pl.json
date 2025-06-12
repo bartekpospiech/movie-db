@@ -5,6 +5,7 @@
     "back_to_home": "Powrót do strony głównej",
     "back_to_search": "Powrót do wyszukiwania",
     "birthday": "Data urodzenia",
+    "buy": "Kup",
     "cast": "Obsada",
     "deathday": "Data śmierci",
     "error": "Wystąpił błąd. Spróbuj ponownie później.",
@@ -18,7 +19,9 @@
     "page_not_found": "Strona nie znaleziona",
     "page_not_found_description": "Strona, której szukasz, nie istnieje.",
     "popular": "Popularne",
+    "rent": "Wypożycz",
     "similar_movies": "Podobne filmy",
+    "stream": "Oglądaj",
     "view_details": "Zobacz szczegóły",
     "view_favorites": "Zobacz ulubione"
   },
