@@ -1,3 +1,5 @@
+import type { MovieResultsEntity } from '@/types'
+
 import { useTranslation } from 'react-i18next'
 import { PiArrowBendUpLeftLight, PiImageBrokenThin } from 'react-icons/pi'
 import { SiImdb } from 'react-icons/si'
@@ -32,6 +34,13 @@ export const MovieActor = () => {
       skip: !id,
     }
   )
+
+  const uniqueCast = Array.from(new Set(movies?.cast?.map(movie => movie.id))).map(id => {
+    return movies?.cast?.find(movie => movie.id === id)
+  })
+  const uniqueCrew = Array.from(new Set(movies?.crew?.map(movie => movie.id))).map(id => {
+    return movies?.crew?.find(movie => movie.id === id)
+  })
 
   if (actorError || moviesError) {
     return <Error />
@@ -103,9 +112,15 @@ export const MovieActor = () => {
         )}
       </Flex>
       <Title headline={t('movies_appares_in')} />
-      <Grid columns={{ base: 1, lg: 2, xl: 3 }} gap={{ base: '12', lg: '8' }} px={{ base: '0', md: '12', xl: '24' }}>
-        {movies?.cast?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
-      </Grid>
+      {actor.known_for_department === 'Acting' ? (
+        <Grid columns={{ base: 1, lg: 2, xl: 3 }} gap={{ base: '12', lg: '8' }} px={{ base: '0', md: '12', xl: '24' }}>
+          {uniqueCast.map(movie => <MoviePreviewCard key={movie?.id} movie={movie as MovieResultsEntity} />) || []}
+        </Grid>
+      ) : (
+        <Grid columns={{ base: 1, lg: 2, xl: 3 }} gap={{ base: '12', lg: '8' }} px={{ base: '0', md: '12', xl: '24' }}>
+          {uniqueCrew?.map(movie => <MoviePreviewCard key={movie?.id} movie={movie as MovieResultsEntity} />) || []}
+        </Grid>
+      )}
       <ScrollToTop />
     </Stack>
   )

@@ -67,7 +67,7 @@ export const movieApi = createApi({
       transformResponse: response => response,
     }),
     getMovieCredits: builder.query({
-      query: id => `/movie/${id}/credits`,
+      query: ({ id, language }) => `/movie/${id}/credits?language=${language}`,
       transformResponse: response => response,
     }),
     getMovieServices: builder.query<Provider, number, ProvidersResonse>({

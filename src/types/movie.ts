@@ -93,8 +93,23 @@ export interface CreditsResponse {
   order: number
 }
 
+export interface CrewResponse {
+  adult: boolean
+  gender: number
+  id: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string
+  credit_id: string
+  department: string
+  job: string
+}
+
 export interface MovieByActorResponse {
   cast?: MovieResultsEntity[]
+  crew?: MovieResultsEntity[]
 }
 
 export interface MovieResultsEntity {
@@ -108,7 +123,8 @@ export interface MovieResultsEntity {
   popularity: number
   poster_path: string
   release_date: string
-  title: string
+  title?: string
+  name?: string
   video: boolean
   vote_average: number
   vote_count: number

@@ -12,7 +12,7 @@ import { getGenreNamesByIds } from '@/utils'
 type MoviePreviewCard = {
   movie: Pick<
     MovieResultsEntity,
-    'id' | 'title' | 'overview' | 'vote_average' | 'genre_ids' | 'poster_path' | 'vote_count'
+    'id' | 'title' | 'name' | 'overview' | 'vote_average' | 'genre_ids' | 'poster_path' | 'vote_count'
   >
 }
 
@@ -24,7 +24,10 @@ export const MoviePreviewCard = ({ movie }: MoviePreviewCard) => {
       {movie.vote_count >= 1000 && movie.vote_average >= 7 && <PopularBadge />}
       <Card.Header p="0">
         {movie.poster_path ? (
-          <LazyImage src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}.jpg`} alt={movie.title} />
+          <LazyImage
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}.jpg`}
+            alt={(movie.title as string) || (movie.name as string)}
+          />
         ) : (
           <AspectRatio ratio={3 / 4} w="full" h="full">
             <Center w="full" h="full" bg="bg.muted" color="fg.subtle">
@@ -45,7 +48,7 @@ export const MoviePreviewCard = ({ movie }: MoviePreviewCard) => {
             </Stack>
             <Link to={`/movie/${movie.id}`}>
               <Text textStyle="3xl" fontWeight="black" lineClamp={1}>
-                {movie.title}
+                {movie.title || movie.name}
               </Text>
             </Link>
           </Stack>

@@ -3,7 +3,15 @@ import { PiArrowBendUpLeftLight, PiCalendarDotsThin, PiImageBrokenThin, PiTimerT
 import { Link } from 'react-router'
 import { useParams } from 'react-router'
 
-import { AddToFavorites, MovieCast, MovieMedia, MovieTags, MovieWatchProviders, SimilarMovies } from './components'
+import {
+  AddToFavorites,
+  MovieCast,
+  MovieCrew,
+  MovieMedia,
+  MovieTags,
+  MovieWatchProviders,
+  SimilarMovies,
+} from './components'
 
 import { Error, LazyImage, ScrollToTop } from '@/components'
 import { APP_PATHS } from '@/routes'
@@ -28,9 +36,12 @@ export const MovieDetails = () => {
     data: credits,
     isLoading: creditsLoading,
     isError: creditsError,
-  } = useGetMovieCreditsQuery(id, {
-    skip: !id,
-  })
+  } = useGetMovieCreditsQuery(
+    { id, language: i18n.language },
+    {
+      skip: !id,
+    }
+  )
   const {
     data: similar,
     isLoading: similarLoading,
@@ -42,6 +53,7 @@ export const MovieDetails = () => {
     }
   )
   const recentCast = credits?.cast.slice(0, 12) ?? []
+  const recentCrew = credits?.crew.slice(0, 12) ?? []
   const similarMovies = similar?.results.slice(0, 3) ?? []
 
   if (movieError || creditsError || similarError) {
@@ -98,6 +110,7 @@ export const MovieDetails = () => {
             <MovieTags genres={movie?.genres ?? []} production_companies={movie?.production_companies ?? []} />
           </Stack>
           <MovieCast cast={recentCast} />
+          <MovieCrew crew={recentCrew} />
         </Stack>
       </Flex>
       <MovieMedia id={movie?.id ?? 0} />
