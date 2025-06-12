@@ -71,10 +71,11 @@ const AvatarProviderLogo = ({
       <Avatar
         name={provider.provider_name}
         src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
-        size="lg"
+        size="xs"
         borderColor="colorPalette.600"
         borderWidth="1px"
         filter="grayscale(1)"
+        _hover={{ filter: 'grayscale(0)' }}
       />
       <Stack gap="0">
         <Text fontWeight="black" textStyle="sm">
