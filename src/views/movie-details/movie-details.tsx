@@ -73,7 +73,7 @@ export const MovieDetails = () => {
               </Center>
             </AspectRatio>
           )}
-          <MovieWatchProviders id={movie?.id} />
+          <MovieWatchProviders id={movie?.id ?? 0} />
         </Flex>
         <Stack>
           <Stack flex="1" gap="3">
