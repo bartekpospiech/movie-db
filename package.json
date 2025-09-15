@@ -56,20 +56,6 @@
     "vite": "^6.3.5",
     "vite-tsconfig-paths": "^5.1.4"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md,css,scss,html}": [
-      "prettier --write"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
   "engines": {
     "node": ">=22"
   }
