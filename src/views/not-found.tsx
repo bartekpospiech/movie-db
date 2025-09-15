@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 
 import { PageHeader } from '@/components'
 import { APP_PATHS } from '@/routes'
-import { Flex } from '@/ui'
+import { Flex, Image } from '@/ui'
 
 export const NotFound = () => {
   const { t } = useTranslation()
@@ -17,6 +17,7 @@ export const NotFound = () => {
         textAlign="center"
         alignItems="center"
       />
+      <Image src="/404.png" alt="404 Not Found" width="300px" height="300px" />
       <Flex justify="flex-start">
         <Link to={APP_PATHS.HOME}>
           <PiArrowBendUpLeftLight fill="green" size="32" />

@@ -10,7 +10,7 @@ export const PageHeader = ({ headline, description, children, ...rootProps }: Pa
   <Stack gap={{ base: '6', md: '8' }} {...rootProps}>
     <Stack gap={{ base: '5', md: '6' }}>
       <Stack gap={{ base: '3', md: '4' }}>
-        <Heading as="h1" textStyle={{ base: '5xl', md: '6xl' }} fontWeight="bolder">
+        <Heading as="h1" textStyle={{ base: '5xl', lg: '6xl' }} fontWeight="black">
           {headline}
         </Heading>
       </Stack>
