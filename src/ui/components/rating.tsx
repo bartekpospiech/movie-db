@@ -5,12 +5,15 @@ export interface RatingProps extends RatingGroup.RootProps {
   icon?: React.ReactElement
   count?: number
   label?: React.ReactNode
+  value?: number
 }
 
-export const Rating = React.forwardRef<HTMLDivElement, RatingProps>(function Rating(props, ref) {
-  const { icon, count = 10, label, ...rest } = props
+export const Rating = React.forwardRef<HTMLDivElement, RatingProps>(function Rating(
+  { icon, count = 10, label, value, ...rest },
+  ref
+) {
   return (
-    <RatingGroup.Root ref={ref} count={count} {...rest}>
+    <RatingGroup.Root ref={ref} count={count} value={value} {...rest} size="sm">
       {label && <RatingGroup.Label>{label}</RatingGroup.Label>}
       <RatingGroup.HiddenInput />
       <RatingGroup.Control>

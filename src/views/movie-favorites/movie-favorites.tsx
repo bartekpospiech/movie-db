@@ -17,6 +17,7 @@ import {
   PaginationPrevTrigger,
   PaginationRoot,
   Spinner,
+  Stack,
 } from '@/ui'
 
 export const MovieFavorites = () => {
@@ -39,7 +40,7 @@ export const MovieFavorites = () => {
   }
 
   return (
-    <>
+    <Stack gap="8">
       <Link to={APP_PATHS.HOME}>
         <PiArrowBendUpLeftLight fill="green" size="32" />
       </Link>
@@ -52,8 +53,10 @@ export const MovieFavorites = () => {
       {data && data?.results?.length ? (
         <>
           <FavoritesSort setCreatedAtSort={setCreatedAtSort} />
-          <Grid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap={{ base: '12', lg: '8' }}>
-            {data?.results?.map(movie => <MoviePreviewCard key={movie.id} movie={movie} />) || []}
+          <Grid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap="8">
+            {data.results.map(movie => (
+              <MoviePreviewCard key={movie.id} movie={movie} />
+            ))}
           </Grid>
         </>
       ) : (
@@ -71,6 +74,7 @@ export const MovieFavorites = () => {
             size="md"
             count={data?.total_results}
             onPageChange={e => setPage(e.page)}
+            siblingCount={2}
             variant="subtle"
           >
             <PaginationPrevTrigger />
@@ -79,6 +83,6 @@ export const MovieFavorites = () => {
           </PaginationRoot>
         )}
       </Flex>
-    </>
+    </Stack>
   )
 }

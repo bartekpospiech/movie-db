@@ -13,8 +13,8 @@ export type InputGroupProps = BoxProps & {
   endOffset?: InputElementProps['paddingEnd']
 }
 
-export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(function InputGroup(props, ref) {
-  const {
+export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(function InputGroup(
+  {
     startElement,
     startElementProps,
     endElement,
@@ -23,8 +23,9 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(func
     startOffset = '6px',
     endOffset = '6px',
     ...rest
-  } = props
-
+  },
+  ref
+) {
   const child = React.Children.only<React.ReactElement<InputElementProps>>(children)
 
   return (

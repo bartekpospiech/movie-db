@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { PiArrowBendUpLeftLight, PiCalendarDotsThin, PiImageBrokenThin, PiTimerThin } from 'react-icons/pi'
+import { PiArrowBendUpLeftLight, PiCalendarDotsThin, PiTimerThin } from 'react-icons/pi'
 import { Link } from 'react-router'
 import { useParams } from 'react-router'
 
@@ -13,10 +13,10 @@ import {
   SimilarMovies,
 } from './components'
 
-import { Error, LazyImage, ScrollToTop } from '@/components'
+import { Error, MovieCardImage, ScrollToTop } from '@/components'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery } from '@/services'
-import { AspectRatio, Box, Center, Flex, Spinner, Stack, Text } from '@/ui'
+import { Flex, Spinner, Stack, Text } from '@/ui'
 import { formatTimeToHoursAndMinutes } from '@/utils'
 
 export const MovieDetails = () => {
@@ -74,17 +74,7 @@ export const MovieDetails = () => {
       </Flex>
       <Flex direction={{ base: 'column', md: 'row' }} gap="12" align={{ md: 'center' }}>
         <Flex direction="column" flex="1 0 fit-content" gap="6" w="480px">
-          {movie && movie.poster_path ? (
-            <Box m="0 auto" overflow="hidden">
-              <LazyImage src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-            </Box>
-          ) : (
-            <AspectRatio ratio={3 / 4} w="full" h="full" maxW={{ base: '100%', md: '400px' }}>
-              <Center bg="bg.muted" color="fg.subtle">
-                <PiImageBrokenThin size="48px" />
-              </Center>
-            </AspectRatio>
-          )}
+          <MovieCardImage movie={movie ?? {}} />
           <MovieWatchProviders id={movie?.id ?? 0} />
         </Flex>
         <Stack>

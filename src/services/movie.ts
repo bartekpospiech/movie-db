@@ -17,7 +17,7 @@ const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY
 
 export const movieApi = createApi({
   reducerPath: 'MOVIE_API',
-  tagTypes: ['Movie'],
+  tagTypes: ['Movie', 'Favorites'],
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.themoviedb.org/3',
     prepareHeaders: headers => {
@@ -78,9 +78,14 @@ export const movieApi = createApi({
       query: ({ page = 1, createdAtSort, language }) =>
         `/account/22040515/favorite/movies?page=${page}&sort_by=${createdAtSort}&language=${language}`,
       transformResponse: response => response,
+      providesTags: ['Favorites'],
     }),
     getSimilarMovies: builder.query({
       query: ({ id, page = 1, language }) => `/movie/${id}/similar?page=${page}&language=${language}`,
+      transformResponse: response => response,
+    }),
+    getMovieReviews: builder.query({
+      query: ({ id, page = 1, language }) => `/movie/${id}/reviews?page=${page}&language=${language}`,
       transformResponse: response => response,
     }),
     searchMovies: builder.query<MoviesResponse, { query: string; page: number; language: string }, MoviesResponse>({
@@ -97,6 +102,7 @@ export const movieApi = createApi({
           favorite: true,
         },
       }),
+      invalidatesTags: ['Favorites'],
     }),
   }),
 })
@@ -114,4 +120,5 @@ export const {
   useSearchMoviesQuery,
   useGetMovieServicesQuery,
   useAddMovieToFavoritesMutation,
+  useGetMovieReviewsQuery,
 } = movieApi

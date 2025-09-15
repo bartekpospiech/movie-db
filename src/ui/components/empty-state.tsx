@@ -7,8 +7,10 @@ export type EmptyStateProps = {
   icon?: React.ReactNode
 } & ChakraEmptyState.RootProps
 
-export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(function EmptyState(props, ref) {
-  const { title, description, icon, children, ...rest } = props
+export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(function EmptyState(
+  { title, description, icon, children, ...rest },
+  ref
+) {
   return (
     <ChakraEmptyState.Root ref={ref} {...rest}>
       <ChakraEmptyState.Content>

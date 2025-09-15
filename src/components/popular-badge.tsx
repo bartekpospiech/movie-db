@@ -15,7 +15,7 @@ export const PopularBadge = () => {
       color="colorPalette.100"
       minW="36"
       py="1"
-      fontWeight="medium"
+      fontWeight="bold"
       textStyle="xs"
       letterSpacing="wide"
       transform="rotate(45deg)"

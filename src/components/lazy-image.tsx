@@ -1,9 +1,7 @@
 import type { ImageProps } from '@/ui'
 
-import { useState } from 'react'
-
-import { Image } from '@/ui'
-import { one_pixel_placeholder } from '@/utils'
+import { Image, useControllableState } from '@/ui'
+import { ONE_PIXEL_PLACEHOLDER } from '@/utils'
 
 type LazyImageProps = {
   alt: string
@@ -12,19 +10,21 @@ type LazyImageProps = {
 } & ImageProps
 
 export const LazyImage = ({ alt, aspectRatio, src, ...ImageProps }: LazyImageProps) => {
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useControllableState({
+    defaultValue: false,
+    value: ImageProps?.onLoad ? true : undefined,
+  })
 
   return (
     <Image
       {...ImageProps}
-      src={loaded ? src : one_pixel_placeholder}
+      src={loaded ? src : ONE_PIXEL_PLACEHOLDER}
       alt={alt}
-      borderRadius="md"
       loading="lazy"
-      aspectRatio={aspectRatio || 3 / 4}
-      onLoad={() => {
-        setLoaded(true)
-      }}
+      aspectRatio={aspectRatio ?? 3 / 4}
+      transition="filter 0.5s ease-out"
+      filter={loaded ? '0' : 'blur(5px)'}
+      onLoad={() => setLoaded(true)}
     />
   )
 }

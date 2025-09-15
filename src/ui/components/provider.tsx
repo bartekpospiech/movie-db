@@ -21,7 +21,7 @@ const Progress = () => (
 export function UiProvider({ children }: PropsWithChildren) {
   return (
     <ChakraProvider value={system}>
-      <Container py={{ base: '16', md: '24' }} minH="calc(100vh - 53px)">
+      <Container py="16" minH="calc(100vh - 53px)">
         <Stack gap={{ base: '12', md: '16' }}>
           <Suspense fallback={<Progress />}>{children}</Suspense>
         </Stack>

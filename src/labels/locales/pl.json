@@ -1,5 +1,6 @@
 {
   "added_to_favorites": "Film dodany do ulubionych.",
+  "adding_to_favorites": "Dodawanie filmu do ulubionych...",
   "common": {
     "add_to_favorites": "Dodaj do ulubionych",
     "back_to_home": "Powrót do strony głównej",
@@ -10,7 +11,7 @@
     "crew": "Ekipa",
     "deathday": "Data śmierci",
     "error": "Wystąpił błąd. Spróbuj ponownie później.",
-    "footer": "© 2025 Wykonane z ❤️ przez",
+    "footer": "© {{year}} Wykonane z ❤️ przez",
     "loading": "Ładowanie...",
     "minutes": "minut",
     "movie_details": "Szczegóły filmu",

@@ -1,5 +1,6 @@
 {
   "added_to_favorites": "Movie added to favorites.",
+  "adding_to_favorites": "Adding movie to favorites...",
   "common": {
     "add_to_favorites": "Add to Favorites",
     "back_to_home": "Back to Home",
@@ -10,7 +11,7 @@
     "crew": "Crew",
     "deathday": "Deathday",
     "error": "An error occurred. Please try again later.",
-    "footer": "© 2025 Made with ❤️ by",
+    "footer": "© {{year}} Made with ❤️ by",
     "loading": "Loading...",
     "minutes": "minutes",
     "movie_details": "Movie Details",

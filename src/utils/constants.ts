@@ -2083,5 +2083,5 @@ export const movie_providers = {
   '2527': 'https://www.arovisionaotearoa.com',
 }
 
-export const one_pixel_placeholder =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUW+y1HwADngHEN2ffBQAAAABJRU5ErkJggg=='
+export const ONE_PIXEL_PLACEHOLDER =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNUylI6AwAC4AF8nmwLNwAAAABJRU5ErkJggg=='

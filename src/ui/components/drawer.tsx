@@ -9,8 +9,10 @@ type DrawerContentProps = {
   offset?: ChakraDrawer.ContentProps['padding']
 } & ChakraDrawer.ContentProps
 
-export const DrawerContent = React.forwardRef<HTMLDivElement, DrawerContentProps>(function DrawerContent(props, ref) {
-  const { children, portalled = true, portalRef, offset, ...rest } = props
+export const DrawerContent = React.forwardRef<HTMLDivElement, DrawerContentProps>(function DrawerContent(
+  { children, portalled = true, portalRef, offset, ...rest },
+  ref
+) {
   return (
     <Portal disabled={!portalled} container={portalRef}>
       <ChakraDrawer.Positioner padding={offset}>

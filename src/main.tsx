@@ -12,15 +12,21 @@ import { UiProvider } from '@/ui'
 
 import '@/i18n'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <UiProvider>
-      <Provider store={store}>
-        <ChangeLang />
-        <RouterProvider router={router} />
-        <Analytics />
-        <SpeedInsights />
-      </Provider>
-    </UiProvider>
-  </StrictMode>
-)
+const el = document.getElementById('root')
+if (el) {
+  const root = createRoot(el)
+  root.render(
+    <StrictMode>
+      <UiProvider>
+        <Provider store={store}>
+          <ChangeLang />
+          <RouterProvider router={router} />
+          <Analytics />
+          <SpeedInsights />
+        </Provider>
+      </UiProvider>
+    </StrictMode>
+  )
+} else {
+  throw new Error('Could not find root element')
+}

@@ -12,8 +12,10 @@ export type AvatarProps = {
   fallback?: React.ReactNode
 } & ChakraAvatar.RootProps
 
-export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(function Avatar(props, ref) {
-  const { name, src, srcSet, loading, icon, fallback, children, ...rest } = props
+export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
+  { name, src, srcSet, loading, icon, fallback, children, ...rest },
+  ref
+) {
   return (
     <ChakraAvatar.Root ref={ref} {...rest}>
       <ChakraAvatar.Fallback name={name}>{icon || fallback}</ChakraAvatar.Fallback>

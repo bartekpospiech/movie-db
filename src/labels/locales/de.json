@@ -1,5 +1,6 @@
 {
   "added_to_favorites": "Film zu Favoriten hinzugefügt.",
+  "adding_to_favorites": "Film wird zu Favoriten hinzugefügt...",
   "common": {
     "add_to_favorites": "Zu Favoriten hinzufügen",
     "back_to_home": "Zurück zur Startseite",
@@ -10,7 +11,7 @@
     "crew": "Crew",
     "deathday": "Todestag",
     "error": "Ein Fehler ist aufgetreten. Bitte versuche es später erneut.",
-    "footer": "© 2025 Gemacht mit ❤️ von",
+    "footer": "© {{year}} Gemacht mit ❤️ von",
     "loading": "Lädt...",
     "minutes": "Minuten",
     "movie_details": "Filmdetails",

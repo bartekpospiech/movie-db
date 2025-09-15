@@ -9,7 +9,7 @@ export const ChangeLang = () => {
   }
 
   return (
-    <Box position="absolute" top="4" left="4">
+    <Box position="absolute" top="4" right="4">
       <SegmentField
         name="direction"
         onChange={value => changeLanguage(value)}

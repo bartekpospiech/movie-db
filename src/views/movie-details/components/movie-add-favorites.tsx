@@ -21,25 +21,20 @@ export const AddToFavorites = ({ movie }: AddToFavoritesProps) => {
       fill="green"
       size="32"
       cursor="pointer"
-      onClick={() =>
-        addMovieToFavorites({
-          id: movie ? movie.id : 0,
-        }).then(() => {
-          toaster.create({
-            description: t('added_to_favorites'),
-            type: 'success',
-            action: {
-              label: t('common.view_favorites'),
-              onClick: () => {
-                navigate('/favorites')
-                window.scrollTo(0, 0)
-                navigate(0)
-              },
+      onClick={() => {
+        toaster.promise(
+          addMovieToFavorites({
+            id: movie?.id || 0,
+          }),
+          {
+            loading: {
+              description: t('adding_to_favorites'),
             },
-            duration: 3000,
-          })
-        })
-      }
+            success: { description: t('added_to_favorites'), onStatusChange: () => navigate('/favorites') },
+            error: { description: t('error_adding_to_favorites') },
+          }
+        )
+      }}
     />
   )
 }
