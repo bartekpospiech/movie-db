@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { PiArrowBendUpLeftLight, PiCalendarDotsThin, PiTimerThin } from 'react-icons/pi'
+import { PiArrowBendUpLeftLight } from 'react-icons/pi'
 import { Link } from 'react-router'
 import { useParams } from 'react-router'
 
@@ -7,8 +7,8 @@ import {
   AddToFavorites,
   MovieCast,
   MovieCrew,
+  MovieDescription,
   MovieMedia,
-  MovieTags,
   MovieWatchProviders,
   SimilarMovies,
 } from './components'
@@ -16,11 +16,10 @@ import {
 import { Error, MovieCardImage, ScrollToTop } from '@/components'
 import { APP_PATHS } from '@/routes'
 import { useGetMovieCreditsQuery, useGetMovieDetailsQuery, useGetSimilarMoviesQuery } from '@/services'
-import { Flex, Spinner, Stack, Text } from '@/ui'
-import { formatTimeToHoursAndMinutes } from '@/utils'
+import { Flex, Spinner, Stack } from '@/ui'
 
 export const MovieDetails = () => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
   const { id } = useParams()
   const {
     data: movie,
@@ -73,32 +72,12 @@ export const MovieDetails = () => {
         <AddToFavorites movie={movie} />
       </Flex>
       <Flex direction={{ base: 'column', md: 'row' }} gap="12" align={{ md: 'center' }}>
-        <Flex direction="column" flex="1 0 fit-content" gap="6" w="480px">
+        <Stack flexShrink="0" gap="6">
           <MovieCardImage movie={movie ?? {}} />
           <MovieWatchProviders id={movie?.id ?? 0} />
-        </Flex>
+        </Stack>
         <Stack>
-          <Stack flex="1" gap="3">
-            <Stack color="fg.muted" textStyle="sm" direction="row" alignItems="center">
-              <PiCalendarDotsThin size="16" />
-              <Text>
-                {movie?.release_date
-                  ? formatTimeToHoursAndMinutes(movie.release_date)
-                  : `${t('movie_no_premiere_date')}`}
-              </Text>
-              <span>•</span>
-              <PiTimerThin size="16" />
-              <Text>{movie?.runtime} min</Text>
-            </Stack>
-            <Text fontSize="4xl" fontWeight="black">
-              {movie?.title}
-            </Text>
-            <Text color="fg.muted" textStyle="lg" fontWeight="semibold">
-              {movie?.tagline}
-            </Text>
-            <Text color="fg.muted">{movie?.overview}</Text>
-            <MovieTags genres={movie?.genres ?? []} production_companies={movie?.production_companies ?? []} />
-          </Stack>
+          <MovieDescription movie={movie} />
           <MovieCast cast={recentCast} />
           <MovieCrew crew={recentCrew} />
         </Stack>
